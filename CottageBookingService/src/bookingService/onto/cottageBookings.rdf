@@ -1,0 +1,132 @@
+@prefix : <http://localhost:8080/bookingService/onto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bookingServiceOntology: <http://localhost:8080/bookingService/onto/bookingServiceOntology#> .
+@base <http://localhost:8080/bookingService/onto/> .
+
+<http://localhost:8080/bookingService/onto/> rdf:type owl:Ontology ;
+                                              owl:imports :bookingServiceOntology .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://localhost:8080/bookingService/onto/Booking_1
+:Booking_1 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Booking ;
+           bookingServiceOntology:hasBooked :Cottage_1 ;
+           bookingServiceOntology:booker_name "Mikko Haapanen"^^xsd:string ;
+           bookingServiceOntology:booking_endDate "2019-03-28T10:00:00"^^xsd:dateTime ;
+           bookingServiceOntology:booking_number "1"^^xsd:int ;
+           bookingServiceOntology:booking_startDate "2019-03-21T21:32:00"^^xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/Booking_2
+:Booking_2 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Booking ;
+           bookingServiceOntology:hasBooked :Cottage_2 ;
+           bookingServiceOntology:booker_name "John Smith"^^xsd:string ;
+           bookingServiceOntology:booking_endDate "2019-05-10T00:00:00"^^xsd:dateTime ;
+           bookingServiceOntology:booking_number "2"^^xsd:int ;
+           bookingServiceOntology:booking_startDate "2019-04-05T11:00:00"^^xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/Booking_3
+:Booking_3 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Booking ;
+           bookingServiceOntology:hasBooked :Cottage_3 ;
+           bookingServiceOntology:booker_name "Mary Jane"^^xsd:string ;
+           bookingServiceOntology:booking_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
+           bookingServiceOntology:booking_number "3"^^xsd:int ;
+           bookingServiceOntology:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/Booking_4
+:Booking_4 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Booking ;
+           bookingServiceOntology:hasBooked :Cottage_4 ;
+           bookingServiceOntology:booker_name "William Blueberry"^^xsd:string ;
+           bookingServiceOntology:booking_endDate "2019-06-15T10:00:00"^^xsd:dateTime ;
+           bookingServiceOntology:booking_number "4"^^xsd:int ;
+           bookingServiceOntology:booking_startDate "2019-06-04T09:00:00"^^xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/Booking_5
+:Booking_5 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Booking ;
+           bookingServiceOntology:hasBooked :Cottage_5 ;
+           bookingServiceOntology:booker_name "James Aironfoot"^^xsd:string ;
+           bookingServiceOntology:booking_number "5"^^xsd:int ;
+           bookingServiceOntology:booking_startDate "2019-04-03T13:20:00"^^xsd:dateTime ,
+                                                    "2019-04-20T12:00:00"^^xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/Cottage_1
+:Cottage_1 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Cottage ;
+           bookingServiceOntology:cottage_address """9259 Stillwater Road 
+Cranberry Twp, PA 16066"""^^xsd:string ;
+           bookingServiceOntology:cottage_bedrooms "5"^^xsd:int ;
+           bookingServiceOntology:cottage_city_distance "1500"^^xsd:int ;
+           bookingServiceOntology:cottage_lake_distance "300"^^xsd:int ;
+           bookingServiceOntology:cottage_nearest_city "Pittsburgh"^^xsd:string ,
+                                                       "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F1768702%2Fpexels-photo-1768702.jpeg%3Fcs%3Dsrgb%26dl%3Dcold-cottage-countryside-1768702.jpg%26fm%3Djpg&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fphoto%2Fcold-cottage-countryside-england-1768702%2F&docid=w4xNwbXrYbpbHM&tbnid=xZJ3Lzm6NKu-rM%3A&vet=10ahUKEwjvk9vC75PhAhVOx4sKHbQFBWgQMwhDKAMwAw..i&w=3024&h=4032&itg=1&bih=1218&biw=1732&q=cottage%20pictures%20free&ved=0ahUKEwjvk9vC75PhAhVOx4sKHbQFBWgQMwhDKAMwAw&iact=mrc&uact=8"^^xsd:anyURI ;
+           bookingServiceOntology:cottage_places "7"^^xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/Cottage_2
+:Cottage_2 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Cottage ;
+           bookingServiceOntology:cottage_address """7231 Fawn Lane 
+Metairie, LA 70001"""^^xsd:string ;
+           bookingServiceOntology:cottage_bedrooms "4"^^xsd:int ;
+           bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
+           bookingServiceOntology:cottage_image "https://www.google.com/url?sa=i&source=imgres&cd=&cad=rja&uact=8&ved=2ahUKEwif1M-X8ZPhAhUxtYsKHY5DCzAQjRx6BAgBEAU&url=https%3A%2F%2Fpxhere.com%2Fen%2Fphoto%2F873298&psig=AOvVaw07oWOFaYO2cKLv6VgQ3JpT&ust=1553280034177678"^^xsd:anyURI ;
+           bookingServiceOntology:cottage_lake_distance "10000"^^xsd:int ;
+           bookingServiceOntology:cottage_nearest_city "Los Angeles"^^xsd:string ;
+           bookingServiceOntology:cottage_places "4"^^xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/Cottage_3
+:Cottage_3 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Cottage ;
+           bookingServiceOntology:cottage_address """93 Smith Ave. 
+Deerfield Beach, FL 33442"""^^xsd:string ;
+           bookingServiceOntology:cottage_bedrooms "8"^^xsd:int ;
+           bookingServiceOntology:cottage_city_distance "200"^^xsd:int ;
+           bookingServiceOntology:cottage_image "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vq1PONqmzne0g3wy3LeX8WSNFlQUjInbvHC7gjsI7IdHzwF3wQ"^^xsd:anyURI ;
+           bookingServiceOntology:cottage_lake_distance "12000"^^xsd:int ;
+           bookingServiceOntology:cottage_nearest_city "Orlando"^^xsd:string ;
+           bookingServiceOntology:cottage_places "10"^^xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/Cottage_4
+:Cottage_4 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Cottage ;
+           bookingServiceOntology:cottage_address """7951 South Airport Drive 
+Valrico, FL 33594"""^^xsd:string ;
+           bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
+           bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
+           bookingServiceOntology:cottage_image "https://www.google.com/imgres?imgurl=https%3A%2F%2Fget.pxhere.com%2Fphoto%2Farchitecture-mansion-house-building-home-cottage-facade-property-hotel-resort-germany-estate-guest-manor-house-real-estate-residential-area-outdoor-structure-1091921.jpg&imgrefurl=https%3A%2F%2Fpxhere.com%2Fen%2Fphoto%2F1091921&docid=UjlmOUniR5Y7dM&tbnid=M3rNFd0VjjmsQM%3A&vet=10ahUKEwjS27Ka85PhAhUJuIsKHYwnBUgQMwhLKAswCw..i&w=4288&h=2848&bih=1218&biw=1732&q=cottage&ved=0ahUKEwjS27Ka85PhAhUJuIsKHYwnBUgQMwhLKAswCw&iact=mrc&uact=8"^^xsd:anyURI ;
+           bookingServiceOntology:cottage_lake_distance "300"^^xsd:int ;
+           bookingServiceOntology:cottage_nearest_city "Tampa"^^xsd:string ;
+           bookingServiceOntology:cottage_places "5"^^xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/Cottage_5
+:Cottage_5 rdf:type owl:NamedIndividual ,
+                    bookingServiceOntology:Cottage ;
+           bookingServiceOntology:cottage_address """23 Rosewood Street 
+Gwynn Oak, MD 21207"""^^xsd:string ;
+           bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
+           bookingServiceOntology:cottage_city_distance "12000"^^xsd:int ;
+           bookingServiceOntology:cottage_image "https://www.google.com/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fc%2Fcf%2FSaranac_Lake_Cure_Cottage.jpg&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFile%3ASaranac_Lake_Cure_Cottage.jpg&docid=fXObDI8YHhN2dM&tbnid=pYNimhB87X87GM%3A&vet=10ahUKEwjS27Ka85PhAhUJuIsKHYwnBUgQMwhxKCQwJA..i&w=1706&h=1310&bih=1218&biw=1732&q=cottage&ved=0ahUKEwjS27Ka85PhAhUJuIsKHYwnBUgQMwhxKCQwJA&iact=mrc&uact=8"^^xsd:anyURI ;
+           bookingServiceOntology:cottage_lake_distance "1000"^^xsd:int ;
+           bookingServiceOntology:cottage_nearest_city "Baltimore"^^xsd:string ;
+           bookingServiceOntology:cottage_places "4"^^xsd:int .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
