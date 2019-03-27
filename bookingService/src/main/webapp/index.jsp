@@ -12,6 +12,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>RDF4J results</title>
     <style type="text/css">
+        form {
+            width: 500px;
+            margin: 0 auto;
+            line-height: 35px;
+        }
+        input,select {
+            width:150px;
+        }
+        .button {
+            margin: 0 auto;
+            width: 100px;
+            display: block;
+        }
         table {
             border: 1px solid #999;
             border-collapse: collapse;
@@ -29,13 +42,45 @@
             padding: 2px 5px;
             word-wrap: break-word;
         }
+        img{
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-<h2>Cottage Bookings</h2>
-<form action="CottageBooking" method="post">
-    <textarea type="text" style="width: 500px; height: 200px;" name="sparql"></textarea>
-    <input type="submit" value="Search">
+<h2 style="text-align: center;">Cottage Bookings</h2>
+<form action="CottageBooking" method="post" id="bookingSearch">
+    booker name: <input type="text" name="booker_name">
+    <br>
+    cottage places: <select name="cottage_places" form="bookingSearch">
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="10">10</option>
+    </select>
+    <br>
+    bedroom amount:
+    <select name="cottage_bedrooms" form="bookingSearch">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+    </select>
+    <br>
+    max distance from a lake (meters): <input type="text" name="cottage_lake_distance">
+    <br>
+    max distance to nearest city: <input type="text" name="cottage_city_distance">
+    <br>
+    required days: <input type="text" name="required_days">
+    <br>
+    start date: <input type="text" name="booking_startDate">
+    <br>
+    <input type="submit" value="Search" class="button">
+    <%--<textarea type="text" style="width: 500px; height: 200px;" name="sparql"></textarea>--%>
 </form>
 <%
     if (request.getAttribute("ask")!=null){
@@ -87,7 +132,11 @@
     %>
     <tr>
         <%for(int n=0;n<result.size();n++){%>
-        <td><%=result.getValue(name.get(n)).toString()%></td>
+            <%if (n == 3){%>
+                <td><img src=<%=result.getValue(name.get(n)).toString()%>></td>
+            <%} else {%>
+                <td><%=result.getValue(name.get(n)).toString()%></td>
+            <%} %>
         <%} %>
     </tr>
     <%
