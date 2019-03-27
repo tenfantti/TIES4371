@@ -1,0 +1,20 @@
+@prefix sswap: <http://sswapmeet.sswap.info/sswap/> .
+@prefix ontologyIRI: <http://localhost:8007/CottageBooking/onto/bookingServiceOntology.owl#> .
+
+<http://localhost:8007/CottageBooking/getService>
+  a <http://sswapmeet.sswap.info/sswap/Resource>, <http://localhost:8007/CottageBooking/onto/bookingServiceOntology.owl#Thing> ;
+  sswap:providedBy <http://localhost:8007/CottageBooking/onto/resourceProvider> ;
+  sswap:name "SSWAP Cottage Booking service" ;
+  sswap:oneLineDescription "A service that take the name and check if there is room booked under that name for the certain amount of time" ;
+  sswap:operatesOn [
+    a sswap:Graph ;
+    sswap:hasMapping [
+      a sswap:Subject, ontologyIRI:Booking ;
+      ontologyIRI:booker_name "" ;
+      ontologyIRI:booking_number "" ;
+
+      sswap:mapsTo [
+        a sswap:Object, ontologyIRI:BookingDate ;
+      ]
+    ]
+  ] .
