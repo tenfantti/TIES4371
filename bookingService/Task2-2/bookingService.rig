@@ -12,14 +12,22 @@
     a sswap:Graph ;
     sswap:hasMapping [
       a sswap:Subject, ontologyIRI:BookingInformation ;
-      ontologyIRI:booker_name "Mary Jane" ;
-      ontologyIRI:booking_number "3" ;
-	  ontologyIRI:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime ;
-	  ontologyIRI:booking_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
-	  ontologyIRI:cottage_address """93 Smith Ave. Deerfield Beach, FL 33442"""^^xsd:string ;
-	  ontologyIRI:cottage_bedrooms "8"^^xsd:int ;
-	  ontologyIRI:cottage_nearest_city "Orlando"^^xsd:string ;
-	  ontologyIRI:cottage_places "10"^^xsd:int ;
+	  ontologyIRI:duration "10"^^xsd:int ;
+	  ontologyIRI:shift_startDate "1"^^xsd:int ;
+	  ontologyIRI:hasCottage [
+			a ontologyIRI:Cottage;
+			ontologyIRI:cottage_address """93 Smith Ave. Deerfield Beach, FL 33442"""^^xsd:string ;
+			ontologyIRI:cottage_bedrooms "8"^^xsd:int ;
+			ontologyIRI:cottage_nearest_city "Orlando"^^xsd:string ;
+			ontologyIRI:cottage_places "10"^^xsd:int ;
+	  ] ;
+	  ontologyIRI:hasBooking [
+			a ontologyIRI:Booking;
+			ontologyIRI:booker_name "Mary Jane" ;
+			ontologyIRI:booking_number "3" ;
+			ontologyIRI:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime ;
+			ontologyIRI:booking_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
+	  ] ;
 
       sswap:mapsTo [
         a sswap:Object, ontologyIRI:Booking

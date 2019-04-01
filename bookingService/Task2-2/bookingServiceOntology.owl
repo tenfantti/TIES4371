@@ -1,168 +1,145 @@
-<?xml version="1.0"?>
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://localhost:8080/bookingService/onto/bookingServiceOntology"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://localhost:8080/bookingService/onto/bookingServiceOntology">
-    <Prefix name="" IRI="http://localhost:8080/bookingService/onto/bookingServiceOntology"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Declaration>
-        <Class IRI="#Booking"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#BookingInformation"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Cottage"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hasBooked"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#booker_name"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#booking_endDate"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#booking_number"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#booking_startDate"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_address"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_bedrooms"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_city_distance"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_image"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_lake_distance"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_nearest_city"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#cottage_places"/>
-    </Declaration>
-    <SubClassOf>
-        <Class IRI="#Booking"/>
-        <Class IRI="#BookingInformation"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Cottage"/>
-        <Class IRI="#BookingInformation"/>
-    </SubClassOf>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasBooked"/>
-        <Class IRI="#Booking"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasBooked"/>
-        <Class IRI="#Cottage"/>
-    </ObjectPropertyRange>
-    <DataPropertyDomain>
-        <DataProperty IRI="#booker_name"/>
-        <Class IRI="#Booking"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#booking_endDate"/>
-        <Class IRI="#Booking"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#booking_number"/>
-        <Class IRI="#Booking"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#booking_startDate"/>
-        <Class IRI="#Booking"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_address"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_bedrooms"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_city_distance"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_image"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_lake_distance"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_nearest_city"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cottage_places"/>
-        <Class IRI="#Cottage"/>
-    </DataPropertyDomain>
-    <DataPropertyRange>
-        <DataProperty IRI="#booker_name"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#booking_endDate"/>
-        <Datatype abbreviatedIRI="xsd:dateTime"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#booking_number"/>
-        <Datatype abbreviatedIRI="xsd:int"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#booking_startDate"/>
-        <Datatype abbreviatedIRI="xsd:dateTime"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_address"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_bedrooms"/>
-        <Datatype abbreviatedIRI="xsd:int"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_city_distance"/>
-        <Datatype abbreviatedIRI="xsd:int"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_image"/>
-        <Datatype abbreviatedIRI="xsd:anyURI"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_lake_distance"/>
-        <Datatype abbreviatedIRI="xsd:int"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_nearest_city"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cottage_places"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-</Ontology>
+@prefix : <http://localhost:8080/bookingService/onto/bookingServiceOntology> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://localhost:8080/bookingService/onto/bookingServiceOntology> .
+
+<http://localhost:8080/bookingService/onto/bookingServiceOntology> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#hasBooked
+:hasBooked rdf:type owl:ObjectProperty ;
+           rdfs:domain :Booking ;
+           rdfs:range :Cottage .
 
 
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#hasBooker
+:hasBooker rdf:type owl:ObjectProperty ;
+           rdfs:domain :BookingInformation ;
+           rdfs:range :Booking .
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#hasCottage
+:hasCottage rdf:type owl:ObjectProperty ;
+            rdfs:domain :BookingInformation ;
+            rdfs:range :Cottage .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booker_name
+:booker_name rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Booking ;
+             rdfs:range xsd:string .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booking_endDate
+:booking_endDate rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Booking ;
+                 rdfs:range xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booking_number
+:booking_number rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Booking ;
+                rdfs:range xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booking_startDate
+:booking_startDate rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Booking ;
+                   rdfs:range xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_address
+:cottage_address rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Cottage ;
+                 rdfs:range xsd:string .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_available_endDate
+:cottage_available_endDate rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :Cottage ;
+                           rdfs:range xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_available_startDate
+:cottage_available_startDate rdf:type owl:DatatypeProperty ;
+                             rdfs:domain :Cottage ;
+                             rdfs:range xsd:dateTime .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_bedrooms
+:cottage_bedrooms rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Cottage ;
+                  rdfs:range xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_city_distance
+:cottage_city_distance rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :Cottage ;
+                       rdfs:range xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_image
+:cottage_image rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Cottage ;
+               rdfs:range xsd:anyURI .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_lake_distance
+:cottage_lake_distance rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :Cottage ;
+                       rdfs:range xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_nearest_city
+:cottage_nearest_city rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :Cottage ;
+                      rdfs:range xsd:string .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_places
+:cottage_places rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Cottage ;
+                rdfs:range xsd:string .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#duration
+:duration rdf:type owl:DatatypeProperty ;
+          rdfs:domain :BookingInformation ;
+          rdfs:range xsd:int .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#shift_startDate
+:shift_startDate rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :BookingInformation ;
+                 rdfs:range xsd:int .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#Booking
+:Booking rdf:type owl:Class ;
+         rdfs:subClassOf :BookingInformation .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#BookingInformation
+:BookingInformation rdf:type owl:Class .
+
+
+###  http://localhost:8080/bookingService/onto/bookingServiceOntology#Cottage
+:Cottage rdf:type owl:Class ;
+         rdfs:subClassOf :BookingInformation .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

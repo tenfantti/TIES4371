@@ -12,14 +12,22 @@
     a sswap:Graph ;
     sswap:hasMapping [
       a sswap:Subject, ontologyIRI:BookingInformation ;
-      ontologyIRI:booker_name ""^^xsd:string ;
-      ontologyIRI:booking_number ""^^xsd:int ;
-	  ontologyIRI:booking_startDate ""^^xsd:dateTime ;
-	  ontologyIRI:booking_endDate ""^^xsd:dateTime ;
-	  ontologyIRI:cottage_address ""^^xsd:string ;
-	  ontologyIRI:cottage_bedrooms ""^^xsd:int ;
-	  ontologyIRI:cottage_nearest_city ""^^xsd:string ;
-	  ontologyIRI:cottage_places ""^^xsd:int ;
+	  ontologyIRI:duration ""^^xsd:int ;
+	  ontologyIRI:shift_startDate ""^^xsd:int ;
+	  ontologyIRI:hasCottage [
+			a ontologyIRI:Cottage;
+			ontologyIRI:cottage_address ""^^xsd:string ;
+			ontologyIRI:cottage_bedrooms ""^^xsd:int ;
+			ontologyIRI:cottage_nearest_city ""^^xsd:string ;
+			ontologyIRI:cottage_places ""^^xsd:int ;
+	  ];
+	  ontologyIRI:hasBooking [
+			a ontologyIRI:Booking;
+			ontologyIRI:booker_name ""^^xsd:string ;
+			ontologyIRI:booking_number ""^^xsd:int ;
+			ontologyIRI:booking_startDate ""^^xsd:dateTime ;
+			ontologyIRI:booking_endDate ""^^xsd:dateTime ;
+	  ];
 
       sswap:mapsTo [
         a sswap:Object, ontologyIRI:Booking ;
