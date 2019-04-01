@@ -31,6 +31,19 @@
 
       sswap:mapsTo [
         a sswap:Object, ontologyIRI:Booking ;
+		ontologyIRI:booking_startDate ""^^xsd:dateTime
+        ontologyIRI:booking_endDate ""^^xsd:dateTime
+		ontologyIRI:booker_name ""^^xsd:string ;
+		ontologyIRI:booking_number ""^^xsd:int ;
+		ontologyIRI:hasBooked [
+			a ontologyIRI:Cottage;
+			ontologyIRI:cottage_address ""^^xsd:string ;
+			ontologyIRI:cottage_bedrooms ""^^xsd:int ;
+			ontologyIRI:cottage_nearest_city ""^^xsd:string ;
+			ontologyIRI:cottage_city_distance ""^^xsd:int ;
+			ontologyIRI:cottage_image ""^^xsd:anyURI ;
+			ontologyIRI:cottage_lake_distance ""^^xsd:int ;
+		] ;
       ]
     ]
   ] .
