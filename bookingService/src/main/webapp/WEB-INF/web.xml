@@ -4,4 +4,24 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>SSWAPServlet</servlet-name>
+  	<display-name>SSWAPServlet</display-name>
+  	<description></description>
+  	<servlet-class>fi.jyu.Server.SSWAPServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SSWAPMediatorServlet</servlet-name>
+  	<display-name>SSWAPMediatorServlet</display-name>
+  	<description></description>
+  	<servlet-class>fi.jyu.Mediator.SSWAPMediatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SSWAPServlet</servlet-name>
+  	<url-pattern>/SSWAPServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SSWAPMediatorServlet</servlet-name>
+  	<url-pattern>/SSWAPMediatorServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
