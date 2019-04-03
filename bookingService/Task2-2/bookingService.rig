@@ -30,20 +30,7 @@
 	  ] ;
 
       sswap:mapsTo [
-        a sswap:Object, ontologyIRI:Booking
-		ontologyIRI:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime
-        ontologyIRI:booking_endDate "2019-06-01T09:00:00"^^xsd:dateTime
-		ontologyIRI:booker_name "Mary Jane"^^xsd:string ;
-		ontologyIRI:booking_number "3"^^xsd:int ;
-		ontologyIRI:hasBooked [
-			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address """93 Smith Ave. Deerfield Beach, FL 33442"""^^xsd:string ;
-			ontologyIRI:cottage_bedrooms "8"^^xsd:int ;
-			ontologyIRI:cottage_nearest_city "Orlando"^^xsd:string ;
-			ontologyIRI:cottage_city_distance "200"^^xsd:int ;
-			ontologyIRI:cottage_image "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vq1PONqmzne0g3wy3LeX8WSNFlQUjInbvHC7gjsI7IdHzwF3wQ"^^xsd:anyURI ;
-			ontologyIRI:cottage_lake_distance "12000"^^xsd:int ;
-		] ;
+        a sswap:Object, ontologyIRI:Booking ;
       ]
     ]
   ] .
