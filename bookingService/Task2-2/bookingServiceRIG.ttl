@@ -21,7 +21,7 @@
 			ontologyIRI:cottage_nearest_city "Orlando" ;
 			ontologyIRI:cottage_places "10"^^xsd:int ;
 	  ] ;
-	  ontologyIRI:hasBooking [
+	  ontologyIRI:hasBooker [
 			a ontologyIRI:Booking;
 			ontologyIRI:booker_name "Mary Jane" ;
 			ontologyIRI:booking_number "3"^^xsd:int ;

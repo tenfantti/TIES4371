@@ -23,7 +23,7 @@
 			ontologyIRI:cottage_lake_distance ""^^xsd:int ;
 			ontologyIRI:cottage_city_distance ""^^xsd:int ;
 	  ];
-	  ontologyIRI:hasBooking [
+	  ontologyIRI:hasBooker [
 			a ontologyIRI:Booking;
 			ontologyIRI:booker_name "" ;
 			ontologyIRI:booking_number ""^^xsd:int ;
