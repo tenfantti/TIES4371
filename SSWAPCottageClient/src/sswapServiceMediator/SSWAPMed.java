@@ -12,7 +12,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import info.sswap.api.http.HTTPProvider;
-import org.openjena.atlas.iterator.Iter;
 
 public class SSWAPMed {
 

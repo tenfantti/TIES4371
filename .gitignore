@@ -1,8 +1,8 @@
-bookingService/target/
+bookingService/target
 bookingService/CottageBookingService.iml
 lib/
 .idea/
-SSWAPCottageClient/out
+SSWAPCottageClient/target
 SSWAPCottageClient/WebContent/WEB-INF/lib
 SSWAPCottageClient/SSWAPCottageClient.iml
 SSWAPCottageService/target
