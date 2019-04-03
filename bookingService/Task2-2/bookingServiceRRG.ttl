@@ -1,0 +1,50 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sswap: <http://sswapmeet.sswap.info/sswap/> .
+@prefix ontologyIRI: <http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#> .
+
+<http://localhost:8080/CottageBooking/getService>
+  a <http://sswapmeet.sswap.info/sswap/Resource>, <http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#Thing> ;
+  sswap:providedBy <http://localhost:8080/CottageBooking/onto/resourceProvider> ;
+  sswap:name "SSWAP CottageBooking service" ;
+  sswap:oneLineDescription "A service that take the name and check if there is room booked under that name for the certain amount of time" ;
+  sswap:operatesOn [
+    a sswap:Graph ;
+    sswap:hasMapping [
+      a sswap:Subject, ontologyIRI:BookingInformation ;
+	  ontologyIRI:duration "10" ;
+	  ontologyIRI:shift_startDate "1" ;
+	  ontologyIRI:hasCottage [
+			a ontologyIRI:Cottage;
+			ontologyIRI:cottage_address "93 Smith Ave. Deerfield Beach, FL 33442" ;
+			ontologyIRI:cottage_bedrooms "8" ;
+			ontologyIRI:cottage_nearest_city "Orlando" ;
+			ontologyIRI:cottage_places "10" ;
+			ontologyIRI:cottage_city_distance "200" ;
+			ontologyIRI:cottage_lake_distance "12000" ;
+	  ] ;
+	  ontologyIRI:hasBooker [
+			a ontologyIRI:Booking;
+			ontologyIRI:booker_name "Mary Jane" ;
+			ontologyIRI:booking_number "3" ;
+			ontologyIRI:booking_startDate "2019-05-22T14:00:00" ;
+			ontologyIRI:booking_endDate "2019-06-01T09:00:00" ;
+	  ] ;
+
+      sswap:mapsTo [
+        a sswap:Object, ontologyIRI:Booking ;
+        ontologyIRI:booking_startDate "2019-05-22T14:00:00"
+        ontologyIRI:booking_endDate "2019-06-01T09:00:00"
+		ontologyIRI:booker_name "Mary Jane" ;
+		ontologyIRI:booking_number "3" ;
+		ontologyIRI:hasBooked [
+			a ontologyIRI:Cottage;
+			ontologyIRI:cottage_address "93 Smith Ave. Deerfield Beach, FL 33442" ;
+			ontologyIRI:cottage_bedrooms "8" ;
+			ontologyIRI:cottage_nearest_city "Orlando" ;
+			ontologyIRI:cottage_city_distance "200" ;
+			ontologyIRI:cottage_lake_distance "12000" ;
+		] ;
+      ]
+    ]
+  ] .

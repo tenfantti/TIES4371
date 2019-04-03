@@ -12,37 +12,38 @@
     a sswap:Graph ;
     sswap:hasMapping [
       a sswap:Subject, ontologyIRI:BookingInformation ;
-	  ontologyIRI:duration ""^^xsd:int ;
-	  ontologyIRI:shift_startDate ""^^xsd:int ;
+	  ontologyIRI:duration "" ;
+	  ontologyIRI:shift_startDate "" ;
 	  ontologyIRI:hasCottage [
 			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address ""^^xsd:string ;
-			ontologyIRI:cottage_bedrooms ""^^xsd:int ;
-			ontologyIRI:cottage_nearest_city ""^^xsd:string ;
-			ontologyIRI:cottage_places ""^^xsd:int ;
+			ontologyIRI:cottage_address "" ;
+			ontologyIRI:cottage_bedrooms "" ;
+			ontologyIRI:cottage_nearest_city "" ;
+			ontologyIRI:cottage_places "" ;
+			ontologyIRI:cottage_lake_distance "" ;
+			ontologyIRI:cottage_city_distance "" ;
 	  ];
-	  ontologyIRI:hasBooking [
+	  ontologyIRI:hasBooker [
 			a ontologyIRI:Booking;
-			ontologyIRI:booker_name ""^^xsd:string ;
-			ontologyIRI:booking_number ""^^xsd:int ;
-			ontologyIRI:booking_startDate ""^^xsd:dateTime ;
-			ontologyIRI:booking_endDate ""^^xsd:dateTime ;
+			ontologyIRI:booker_name "" ;
+			ontologyIRI:booking_number "" ;
+			ontologyIRI:booking_startDate "" ;
+			ontologyIRI:booking_endDate "" ;
 	  ];
 
       sswap:mapsTo [
         a sswap:Object, ontologyIRI:Booking ;
-		ontologyIRI:booking_startDate ""^^xsd:dateTime
-        ontologyIRI:booking_endDate ""^^xsd:dateTime
-		ontologyIRI:booker_name ""^^xsd:string ;
-		ontologyIRI:booking_number ""^^xsd:int ;
+		ontologyIRI:booking_startDate ""
+        ontologyIRI:booking_endDate ""
+		ontologyIRI:booker_name "" ;
+		ontologyIRI:booking_number "" ;
 		ontologyIRI:hasBooked [
 			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address ""^^xsd:string ;
-			ontologyIRI:cottage_bedrooms ""^^xsd:int ;
-			ontologyIRI:cottage_nearest_city ""^^xsd:string ;
-			ontologyIRI:cottage_city_distance ""^^xsd:int ;
-			ontologyIRI:cottage_image ""^^xsd:anyURI ;
-			ontologyIRI:cottage_lake_distance ""^^xsd:int ;
+			ontologyIRI:cottage_address "" ;
+			ontologyIRI:cottage_bedrooms "" ;
+			ontologyIRI:cottage_nearest_city "" ;
+			ontologyIRI:cottage_city_distance "" ;
+			ontologyIRI:cottage_lake_distance "" ;
 		] ;
       ]
     ]
