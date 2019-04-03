@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://sswapmeet.sswap.info/sswap/"
+         xmlns:ns1="http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#">
+
+  <rdf:Description rdf:about="http://localhost:8080/CottageBooking/getService">
+    <rdf:type rdf:resource="http://sswapmeet.sswap.info/sswap/Resource"/>
+    <rdf:type rdf:resource="http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#Thing"/>
+    <ns0:providedBy rdf:resource="http://localhost:8080/CottageBooking/onto/resourceProvider"/>
+    <ns0:name>SSWAP Cottage Booking service</ns0:name>
+    <ns0:oneLineDescription>A service that take the name and check if there is room booked under that name for the certain amount of time</ns0:oneLineDescription>
+    <ns0:operatesOn>
+      <ns0:Graph>
+        <ns0:hasMapping>
+          <ns0:Subject>
+            <rdf:type rdf:resource="http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#BookingInformation"/>
+            <ns1:duration></ns1:duration>
+            <ns1:shift_startDate></ns1:shift_startDate>
+            <ns1:hasCottage>
+              <ns1:Cottage>
+                <ns1:cottage_address></ns1:cottage_address>
+                <ns1:cottage_bedrooms></ns1:cottage_bedrooms>
+                <ns1:cottage_nearest_city></ns1:cottage_nearest_city>
+                <ns1:cottage_places></ns1:cottage_places>
+                <ns1:cottage_lake_distance></ns1:cottage_lake_distance>
+                <ns1:cottage_city_distance></ns1:cottage_city_distance>
+              </ns1:Cottage>
+            </ns1:hasCottage>
+
+            <ns1:hasBooker>
+              <ns1:Booking>
+                <ns1:booker_name></ns1:booker_name>
+                <ns1:booking_number></ns1:booking_number>
+                <ns1:booking_startDate></ns1:booking_startDate>
+                <ns1:booking_endDate></ns1:booking_endDate>
+              </ns1:Booking>
+            </ns1:hasBooker>
+
+            <ns0:mapsTo>
+              <ns0:Object>
+                <rdf:type rdf:resource="http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#Booking"/>
+                <ns1:booking_startDate></ns1:booking_startDate>
+                <ns1:booking_endDate></ns1:booking_endDate>
+                <ns1:booker_name></ns1:booker_name>
+                <ns1:booking_number></ns1:booking_number>
+                <ns1:hasBooked>
+                  <ns1:Cottage>
+                    <ns1:cottage_address></ns1:cottage_address>
+                    <ns1:cottage_bedrooms></ns1:cottage_bedrooms>
+                    <ns1:cottage_nearest_city></ns1:cottage_nearest_city>
+                    <ns1:cottage_city_distance></ns1:cottage_city_distance>
+                    <ns1:cottage_lake_distance></ns1:cottage_lake_distance>
+                  </ns1:Cottage>
+                </ns1:hasBooked>
+
+              </ns0:Object>
+            </ns0:mapsTo>
+
+          </ns0:Subject>
+        </ns0:hasMapping>
+
+      </ns0:Graph>
+    </ns0:operatesOn>
+
+  </rdf:Description>
+
+</rdf:RDF>

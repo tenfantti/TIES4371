@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import info.sswap.api.model.SSWAP;
 import info.sswap.api.servlet.SimpleSSWAPServlet;
 
 /**
@@ -16,21 +17,17 @@ import info.sswap.api.servlet.SimpleSSWAPServlet;
  */
 @WebServlet("/SSWAPServlet")
 public class SSWAPServlet extends SimpleSSWAPServlet {
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		// always do this
-		
-		
-		
 		super.init(servletConfig);
-
 		// do anything else here that needs to be done once, on servlet load
 
-		// if needed, to increase the timeout above the default 2 mins
-		//int timeout = 10 * 60 * 1000;	// 5 mins in milliseconds
-		//setTimeout(timeout);
+//		 if needed, to increase the timeout above the default 2 mins
+		int timeout = 10 * 60 * 1000;	// 5 mins in milliseconds
+		setTimeout(timeout);
 	}
 
 	/*

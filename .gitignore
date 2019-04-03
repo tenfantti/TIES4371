@@ -1,5 +1,10 @@
 bookingService/target/
-out/
+bookingService/CottageBookingService.iml
+lib/
 .idea/
-TIES4371.iml
-bookingService/bookingService.iml
+SSWAPCottageClient/out
+SSWAPCottageClient/WebContent/WEB-INF/lib
+SSWAPCottageClient/SSWAPCottageClient.iml
+SSWAPCottageService/target
+SSWAPCottageService/SSWAPCottageService.iml
+
