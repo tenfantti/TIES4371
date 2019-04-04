@@ -3,7 +3,7 @@ package sswapServiceMediator;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Iterator;
+import java.util.*;
 
 import info.sswap.api.model.*;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -16,7 +16,11 @@ import info.sswap.api.http.HTTPProvider;
 public class SSWAPMed {
 
 	private String serviceUrl = "";
+	RDG rdg = null;
 	private String queryResult;
+	private List<String> lookUpNames;
+	private HashMap<String,String> form;
+	private List<String> results;
 
 	public SSWAPMed(){
 
@@ -37,7 +41,6 @@ System.out.println("-------------");
 			System.out.println("Error executing httpGet: " + e);
 		}
 
-		RDG rdg = null;
 		try {
 			URI uri = new URI(serviceUrl);
 			rdg = SSWAP.getResourceGraph(response.getEntity().getContent(), RDG.class, uri);
@@ -72,8 +75,39 @@ System.out.println("-------------");
 		}
 
 	}
-	
-	
+
+	public void sendRequest(String endpoint, HashMap<String,String> valueMap) {
+		serviceUrl = endpoint;
+		System.out.println("Service URL: " + serviceUrl);
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpGet httpGet = new HttpGet(serviceUrl);
+		CloseableHttpResponse response = null;
+		try {
+			response = client.execute(httpGet);
+		} catch (Exception e) {
+			System.out.println("Error executing httpGet: " + e);
+		}
+
+		try {
+			URI uri = new URI(serviceUrl);
+			rdg = SSWAP.getResourceGraph(response.getEntity().getContent(), RDG.class, uri);
+		} catch (DataAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalStateException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		sendRIG(rdg,valueMap);
+	}
+
 	public SSWAPSubject getSubject(RDG rdg) {
 		SSWAPResource resource = rdg.getResource();
 		SSWAPGraph graph = resource.getGraph();
@@ -90,10 +124,12 @@ System.out.println("-------------");
 
 		Iterator<SSWAPProperty> iterator = subject.getProperties().iterator();
 		System.out.println("Request properties:");
+		lookUpNames = new ArrayList<>();
 		while (iterator.hasNext()) { // this is a string property
 			SSWAPProperty property = iterator.next();
 			if (property.getValue().isLiteral()) {
 				String lookupName = getStrName(property.getURI());
+				lookUpNames.add(lookupName);
 				System.out.println(""+lookupName);
 			} else if (property.getValue().isIndividual()) { // this is an object property
 				SSWAPIndividual individual = property.getValue().asIndividual();
@@ -103,6 +139,7 @@ System.out.println("-------------");
 					SSWAPProperty indProperty = indIterator.next();
 					if(indProperty.getValue().isLiteral()){
 						String lookupName = getStrName(indProperty.getURI());
+						lookUpNames.add(lookupName);
 						System.out.println(""+lookupName);
 					}else if(indProperty.getValue().isIndividual()){
 						// we suppose there are no individuals in nested property
@@ -111,8 +148,7 @@ System.out.println("-------------");
 				}
 			}
 		}
-//		return
-		sendRIG(rdg);
+//		sendRIG(rdg);
    }
 
 	/**
@@ -120,7 +156,7 @@ System.out.println("-------------");
 	 * @param rdg the RDG where the RIG is taken from.
 	 * @return the service result.
 	 */
-	public void sendRIG(RDG rdg) {	
+	public void sendRIG(RDG rdg,HashMap<String, String> valueMap) {
 		System.out.println("---");
 		System.out.println("Send RIG...");
 		System.out.println("---");
@@ -132,14 +168,14 @@ System.out.println("-------------");
 
 		String lookupName = "";
 		String lookupValue = "";
-		int i=0;
 
 		while (iterator.hasNext()) { // this is a string property
 			SSWAPProperty property = iterator.next();
 			if (property.getValue().isLiteral()) {
 				SSWAPPredicate predicate = rdg.getPredicate(property.getURI());
-				i++;
-				subject.setProperty(predicate, "value"+i);
+				String value  = valueMap.get(getStrName(property.getURI()));
+				if (value != null)
+					subject.setProperty(predicate, value);
 			} else if (property.getValue().isIndividual()) { // this is an object property
 				SSWAPIndividual individual = property.getValue().asIndividual();
 				Iterator<SSWAPProperty> indIterator = individual.getProperties().iterator();
@@ -147,8 +183,10 @@ System.out.println("-------------");
 					SSWAPProperty indProperty = indIterator.next();
 					if(indProperty.getValue().isLiteral()){
 						SSWAPPredicate predicate = rdg.getPredicate(indProperty.getURI());
-						i++;
-						individual.setProperty(predicate, "value"+i);
+						String name11 = getStrName(indProperty.getURI());
+						String value  = valueMap.get(getStrName(indProperty.getURI()));
+						if (value != null)
+							individual.setProperty(predicate, value);
 					}else if(indProperty.getValue().isIndividual()){
 						// we suppose there are no individuals in nested property
 						System.out.println("Nested property value is Individual:");
@@ -210,9 +248,13 @@ System.out.println("-------------");
 		SSWAPSubject subject = graph.getSubject();
 		Iterator<SSWAPObject> iteratorObjects =  subject.getObjects().iterator();
 		int i = 1;
+
+		lookUpNames = new ArrayList<>();
+		results = new ArrayList<>();
 		while (iteratorObjects.hasNext()) {
 			SSWAPObject object = iteratorObjects.next();
 			System.out.println("Result: "+i+" -------------");
+			String values = new String();
 			Iterator<SSWAPProperty> iteratorProperties = object.getProperties().iterator();
 			while (iteratorProperties.hasNext()) {
 				SSWAPProperty property = iteratorProperties.next();
@@ -221,6 +263,10 @@ System.out.println("-------------");
 					String lookupName = getStrName(property.getURI());
 					String lookupValue = getStrValue(object,predicate);
 					System.out.println(""+lookupName+" : "+lookupValue);
+					if (i == 1){
+						lookUpNames.add(lookupName);
+					}
+					values = values+lookupValue+',';
 				} else if (property.getValue().isIndividual()) {
 					SSWAPIndividual individual = property.getValue().asIndividual();
 					Iterator<SSWAPProperty> indIterator = individual.getProperties().iterator();
@@ -231,6 +277,10 @@ System.out.println("-------------");
 							String lookupName = getStrName(indProperty.getURI());
 							String lookupValue = getStrValue(individual,predicate);
 							System.out.println(""+lookupName+" : "+lookupValue);
+							if (i == 1){
+								lookUpNames.add(lookupName);
+							}
+							values = values+lookupValue+',';
 						} else if(indProperty.getValue().isIndividual()){
 							// we suppose there are no individuals in nested property
 							System.out.println("Nested property value is Individual:");
@@ -274,9 +324,17 @@ System.out.println("-------------");
 		return parts[1];
 	}
 	
-	public String getResult(){
-		queryResult = "Done!";
-		return queryResult;
+	public String getServiceUrl(){
+//		queryResult = "Done!";
+		return serviceUrl;
+	}
+
+	public List<String> getRDG() {
+		return lookUpNames;
+	}
+
+	public List<String> getRRG(){
+		return results;
 	}
 	
 	

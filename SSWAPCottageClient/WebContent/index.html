@@ -7,7 +7,38 @@
 </script>
 <SCRIPT language="JavaScript" SRC="myJS.js">
 </SCRIPT>
-
+<style type="text/css">
+    form {
+        width: 500px;
+        margin: 0 auto;
+        line-height: 35px;
+    }
+    .serviceUrl {
+        text-align: center;
+    }
+    .column {
+        width: 50%;
+        float: left;
+    }
+    .column h4{
+        margin:0;
+    }
+    input,select {
+        width:150px;
+        margin: 7px 0 7px 0;
+    }
+    .button {
+        margin: 0 auto;
+        width: 100px;
+        display: block;
+    }
+    table {
+        border: 1px solid #999;
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+    }
+</style>
 
 </head>
 <body> 
@@ -19,40 +50,12 @@
 <input type="text" style="width:100%"  name="rClass" id="rc">
 <input type="button"  value="Query" id="sBut" onclick="doQuery();" style="width:50px">
 
-<!--<form action="CottageBooking" method="post" id="SearchForm">-->
-    <!--<h3 ></h3>-->
-            <!--booker name: <input type="text" name="booker_name">-->
-    <!--<br>-->
-    <!--cottage places: <select name="cottage_places" form="bookingSearch">-->
-    <!--<option value="4">4</option>-->
-    <!--<option value="5">5</option>-->
-    <!--<option value="7">7</option>-->
-    <!--<option value="10">10</option>-->
-<!--</select>-->
-    <!--<br>-->
-    <!--bedroom amount:-->
-    <!--<select name="cottage_bedrooms" form="bookingSearch">-->
-        <!--<option value="1">1</option>-->
-        <!--<option value="2">2</option>-->
-        <!--<option value="3">3</option>-->
-        <!--<option value="4">4</option>-->
-        <!--<option value="5">5</option>-->
-        <!--<option value="6">6</option>-->
-        <!--<option value="7">7</option>-->
-        <!--<option value="8">8</option>-->
-    <!--</select>-->
-    <!--<br>-->
-    <!--max distance from a lake (meters): <input type="text" name="cottage_lake_distance">-->
-    <!--<br>-->
-    <!--max distance to nearest city: <input type="text" name="cottage_city_distance">-->
-    <!--<br>-->
-    <!--required days: <input type="text" name="required_days">-->
-    <!--<br>-->
-    <!--start date: <input type="text" name="booking_startDate">-->
-    <!--<br>-->
-    <!--<input type="submit" value="Search" class="button">-->
-    <!--<%&#45;&#45;<textarea type="text" style="width: 500px; height: 200px;" name="sparql"></textarea>&#45;&#45;%>-->
-<!--</form>-->
+<form action="CottageBooking" method="post" id="SearchForm" style="display: none">
+    <h3 name="serviceUrl" id="serviceUrl"></h3>
+    <div class="column" id="nameC"></div>
+    <div class="column" id="valueC"></div>
+    <input type="button" value="Search" class="button" id="searchBut" onclick="doSearch();">
+</form>
 		
 </body>
 </html>

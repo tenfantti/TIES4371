@@ -218,7 +218,7 @@ System.out.println("--- in service...");
 		if ( sswapProperty != null ) {
 			value = sswapProperty.getValue().asString();
 
-			if ( value.isEmpty() ) {
+			if ( value == null) {
 				value = null;
 			}
 		}
