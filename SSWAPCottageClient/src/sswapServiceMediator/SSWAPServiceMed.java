@@ -61,7 +61,7 @@ public class SSWAPServiceMed extends HttpServlet {
 			Enumeration<String> parameterNames = request.getParameterNames();
 			while (parameterNames.hasMoreElements()) {
 				String paramName = parameterNames.nextElement().trim();
-				String paramValue = request.getParameter(paramName).trim();
+				String paramValue = request.getParameter(paramName);
 				if (paramName.equals("serviceURL")) {
 					endPoint = paramValue;
 				} else if (paramName.equals("serviceURL")) {
