@@ -1,0 +1,78 @@
+prefix ex: <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT 
+    ?booking_startDate
+    ?booking_endDate
+    ?booker_name
+    ?booking_number
+    ?cottage_address
+    ?cottage_image
+    ?cottage_places
+    ?cottage_bedrooms
+    ?cottage_lake_distance
+    ?cottage_nearest_city
+    ?cottage_city_distance
+    ?cottage_available_startDate
+    ?cottage_available_endDate
+where {
+    ?Booking ex:booker_name ?booker_name.
+        FILTER(?booker_name= "Mary Jane"^^xsd:string) .
+    ?Booking ex:booking_number ?booking_number.
+    ?Booking ex:booking_startDate ?booking_startDate.
+        FILTER(?booking_startDate= "2019-05-22T14:00:00"^^xsd:dateTime) .
+    ?Booking ex:booking_endDate ?booking_endDate.
+        FILTER(?booking_endDate= "2019-06-01T09:00:00"^^xsd:dateTime) .
+    ?Cottage ex:cottage_address ?cottage_address.
+    ?Cottage ex:cottage_image ?cottage_image.
+    ?Cottage ex:cottage_places ?cottage_places.
+        FILTER(?cottage_places= "10"^^xsd:int) .
+    ?Cottage ex:cottage_bedrooms ?cottage_bedrooms.
+        FILTER(?cottage_bedrooms= "8"^^xsd:int) .
+    ?Cottage ex:cottage_lake_distance ?cottage_lake_distance.
+        FILTER(?cottage_lake_distance= "12000"^^xsd:int) .
+    ?Cottage ex:cottage_nearest_city ?cottage_nearest_city.
+    ?Cottage ex:cottage_city_distance ?cottage_city_distance.
+        FILTER(?cottage_city_distance= "200"^^xsd:int) .
+    ?Cottage ex:cottage_available_startDate ?cottage_available_startDate.
+    ?Cottage ex:cottage_available_startDate ?cottage_available_endDate.
+
+}
+
+
+
+
+
+
+--SAMPLE to check all data
+prefix ex: <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#>
+SELECT 
+    ?booking_startDate
+    ?booking_endDate
+    ?booker_name
+    ?booking_number
+    ?cottage_address
+    ?cottage_image
+    ?cottage_places
+    ?cottage_bedrooms
+    ?cottage_lake_distance
+    ?cottage_nearest_city
+    ?cottage_city_distance
+    ?cottage_available_startDate
+    ?cottage_available_endDate
+where {
+    ?Booking ex:booker_name ?booker_name.
+    ?Booking ex:booking_number ?booking_number.
+    ?Booking ex:booking_startDate ?booking_startDate.
+    ?Booking ex:booking_endDate ?booking_endDate.
+
+    ?Cottage ex:cottage_address ?cottage_address.
+    ?Cottage ex:cottage_image ?cottage_image.
+    ?Cottage ex:cottage_places ?cottage_places.
+    ?Cottage ex:cottage_bedrooms ?cottage_bedrooms.
+    ?Cottage ex:cottage_lake_distance ?cottage_lake_distance.
+    ?Cottage ex:cottage_nearest_city ?cottage_nearest_city.
+    ?Cottage ex:cottage_city_distance ?cottage_city_distance.
+    ?Cottage ex:cottage_available_startDate ?cottage_available_startDate.
+    ?Cottage ex:cottage_available_startDate ?cottage_available_endDate.
+}

@@ -15,17 +15,17 @@
 				ontologyIRI:hasCottage 
 				[
 					a ontologyIRI:Cottage;
-					ontologyIRI:cottage_places "10" ;
-					ontologyIRI:cottage_bedrooms "8" ;
-					ontologyIRI:cottage_lake_distance "12000" ;
-					ontologyIRI:cottage_city_distance "200" ;
+						ontologyIRI:cottage_places "10" ;
+						ontologyIRI:cottage_bedrooms "8" ;
+						ontologyIRI:cottage_lake_distance "12000" ;
+						ontologyIRI:cottage_city_distance "200" ;
 				];
 				ontologyIRI:hasBooker 
 				[
 					a ontologyIRI:Booking;
-					ontologyIRI:booker_name "Mary Jane" ;
-					ontologyIRI:booking_startDate "2019-05-22T14:00:00" ;
-					ontologyIRI:booking_endDate "2019-06-01T09:00:00" ;
+						ontologyIRI:booker_name "Mary Jane" ;
+						ontologyIRI:booking_startDate "2019-05-22T14:00:00" ;
+						ontologyIRI:booking_endDate "2019-06-01T09:00:00" ;
 				];
 
       sswap:mapsTo [

@@ -1,20 +1,20 @@
-@prefix : <http://localhost:8080/bookingService/onto/> .
+@prefix : <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix bookingServiceOntology: <http://localhost:8080/bookingService/onto/bookingServiceOntology.owl#> .
-@base <http://localhost:8080/bookingService/onto/> .
+@prefix bookingServiceOntology: <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#> .
+@base <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#> .
 
-<http://localhost:8080/bookingService/onto/> rdf:type owl:Ontology ;
+<http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#> rdf:type owl:Ontology ;
                                               owl:imports :bookingServiceOntology .
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://localhost:8080/bookingService/onto/Booking_1
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_1
 :Booking_1 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Booking ;
            bookingServiceOntology:hasBooked :Cottage_1 ;
@@ -24,7 +24,7 @@
            bookingServiceOntology:booking_startDate "2019-03-21T21:32:00"^^xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/Booking_2
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_2
 :Booking_2 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Booking ;
            bookingServiceOntology:hasBooked :Cottage_2 ;
@@ -34,7 +34,7 @@
            bookingServiceOntology:booking_startDate "2019-04-05T11:00:00"^^xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/Booking_3
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_3
 :Booking_3 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Booking ;
            bookingServiceOntology:hasBooked :Cottage_3 ;
@@ -44,7 +44,7 @@
            bookingServiceOntology:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/Booking_4
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_4
 :Booking_4 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Booking ;
            bookingServiceOntology:hasBooked :Cottage_4 ;
@@ -54,7 +54,7 @@
            bookingServiceOntology:booking_startDate "2019-06-04T09:00:00"^^xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/Booking_5
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_5
 :Booking_5 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Booking ;
            bookingServiceOntology:hasBooked :Cottage_5 ;
@@ -64,7 +64,7 @@
            bookingServiceOntology:booking_endDate "2019-04-20T12:00:00"^^xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/Cottage_1
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_1
 :Cottage_1 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Cottage ;
 		   bookingServiceOntology:cottage_available_startDate "2019-03-28T10:00:00"^^xsd:dateTime ;
@@ -79,7 +79,7 @@ Cranberry Twp, PA 16066"""^^xsd:string ;
            bookingServiceOntology:cottage_places "7"^^xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/Cottage_2
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_2
 :Cottage_2 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Cottage ;
 		   bookingServiceOntology:cottage_available_startDate "2019-04-05T11:00:00"^^xsd:dateTime ;
@@ -94,7 +94,7 @@ Metairie, LA 70001"""^^xsd:string ;
            bookingServiceOntology:cottage_places "4"^^xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/Cottage_3
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_3
 :Cottage_3 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Cottage ;
 		   bookingServiceOntology:cottage_available_startDate "2019-05-22T14:00:00"^^xsd:dateTime ;
@@ -109,7 +109,7 @@ Deerfield Beach, FL 33442"""^^xsd:string ;
            bookingServiceOntology:cottage_places "10"^^xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/Cottage_4
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_4
 :Cottage_4 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Cottage ;
 		   bookingServiceOntology:cottage_available_startDate "2019-06-04T09:00:00"^^xsd:dateTime ;
@@ -124,7 +124,7 @@ Valrico, FL 33594"""^^xsd:string ;
            bookingServiceOntology:cottage_places "5"^^xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/Cottage_5
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_5
 :Cottage_5 rdf:type owl:NamedIndividual ,
                     bookingServiceOntology:Cottage ;
 		   bookingServiceOntology:cottage_available_startDate "2019-04-03T13:20:00"^^xsd:dateTime ;
