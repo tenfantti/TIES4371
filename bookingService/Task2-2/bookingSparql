@@ -32,6 +32,7 @@ where {
     ?Cottage ex:cottage_lake_distance ?cottage_lake_distance.
         FILTER(?cottage_lake_distance= "12000"^^xsd:int) .
     ?Cottage ex:cottage_nearest_city ?cottage_nearest_city.
+        FILTER(?cottage_nearest_city= "Orlando"^^xsd:string) .
     ?Cottage ex:cottage_city_distance ?cottage_city_distance.
         FILTER(?cottage_city_distance= "200"^^xsd:int) .
     ?Cottage ex:cottage_available_startDate ?cottage_available_startDate.
