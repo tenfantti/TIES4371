@@ -12,6 +12,8 @@
     a sswap:Graph ;
     sswap:hasMapping [
       a sswap:Subject, ontologyIRI:BookingInformation ;
+			ontologyIRI:duration "10" ;
+	  	ontologyIRI:shift_startDate "1" ;
 				ontologyIRI:hasCottage 
 				[
 					a ontologyIRI:Cottage;
@@ -31,8 +33,6 @@
 
       sswap:mapsTo [
         a sswap:Object, ontologyIRI:Booking ;
-				ontologyIRI:booking_startDate "2019-05-22T14:00:00"
-				ontologyIRI:booking_endDate "2019-06-01T09:00:00"
 				ontologyIRI:booker_name "Mary Jane" ;
 				ontologyIRI:booking_number "3" ;
 				ontologyIRI:hasBooked 

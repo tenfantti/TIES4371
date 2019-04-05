@@ -2,8 +2,6 @@ prefix ex: <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.ow
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT 
-    ?booking_startDate
-    ?booking_endDate
     ?booker_name
     ?booking_number
     ?cottage_address
@@ -37,6 +35,10 @@ where {
         FILTER(?cottage_city_distance= "200"^^xsd:int) .
     ?Cottage ex:cottage_available_startDate ?cottage_available_startDate.
     ?Cottage ex:cottage_available_startDate ?cottage_available_endDate.
+    ?BookingInfo ex:duration ?duration.
+        FILTER(?duration="10"^^xsd:int).
+    ?BookingInfo ex:shift_startDate ?shift_startDate.
+        FILTER(?shift_startDate="1"^^xsd:int) .
 
 }
 

@@ -8,135 +8,137 @@
 @base <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#> .
 
 <http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#> rdf:type owl:Ontology ;
-                                              owl:imports :bookingServiceOntology .
+                                                                          owl:imports bookingServiceOntology:bookingServiceOntology .
 
 #################################################################
 #    Individuals
 #################################################################
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_1
-:Booking_1 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Booking ;
-           bookingServiceOntology:hasBooked :Cottage_1 ;
-           bookingServiceOntology:booker_name "Mikko Haapanen"^^xsd:string ;
-           bookingServiceOntology:booking_endDate "2019-03-28T10:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:booking_number "1"^^xsd:int ;
-           bookingServiceOntology:booking_startDate "2019-03-21T21:32:00"^^xsd:dateTime .
+bookingServiceOntology:Booking_1 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Booking ;
+                                 bookingServiceOntology:hasBooked bookingServiceOntology:Cottage_1 ;
+                                 bookingServiceOntology:booker_name "Mikko Haapanen"^^xsd:string ;
+                                 bookingServiceOntology:booking_endDate "2019-03-28T10:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:booking_number "1"^^xsd:int ;
+                                 bookingServiceOntology:booking_startDate "2019-03-21T21:32:00"^^xsd:dateTime .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_2
-:Booking_2 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Booking ;
-           bookingServiceOntology:hasBooked :Cottage_2 ;
-           bookingServiceOntology:booker_name "John Smith"^^xsd:string ;
-           bookingServiceOntology:booking_endDate "2019-05-10T00:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:booking_number "2"^^xsd:int ;
-           bookingServiceOntology:booking_startDate "2019-04-05T11:00:00"^^xsd:dateTime .
+bookingServiceOntology:Booking_2 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Booking ;
+                                 bookingServiceOntology:hasBooked bookingServiceOntology:Cottage_2 ;
+                                 bookingServiceOntology:booker_name "John Smith"^^xsd:string ;
+                                 bookingServiceOntology:booking_endDate "2019-05-10T00:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:booking_number "2"^^xsd:int ;
+                                 bookingServiceOntology:booking_startDate "2019-04-05T11:00:00"^^xsd:dateTime .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_3
-:Booking_3 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Booking ;
-           bookingServiceOntology:hasBooked :Cottage_3 ;
-           bookingServiceOntology:booker_name "Mary Jane"^^xsd:string ;
-           bookingServiceOntology:booking_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:booking_number "3"^^xsd:int ;
-           bookingServiceOntology:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime .
+bookingServiceOntology:Booking_3 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Booking ;
+                                 bookingServiceOntology:hasBooked bookingServiceOntology:Cottage_3 ;
+                                 bookingServiceOntology:booker_name "Mary Jane"^^xsd:string ;
+                                 bookingServiceOntology:booking_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:booking_number "3"^^xsd:int ;
+                                 bookingServiceOntology:booking_startDate "2019-05-22T14:00:00"^^xsd:dateTime .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_4
-:Booking_4 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Booking ;
-           bookingServiceOntology:hasBooked :Cottage_4 ;
-           bookingServiceOntology:booker_name "William Blueberry"^^xsd:string ;
-           bookingServiceOntology:booking_endDate "2019-06-15T10:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:booking_number "4"^^xsd:int ;
-           bookingServiceOntology:booking_startDate "2019-06-04T09:00:00"^^xsd:dateTime .
+bookingServiceOntology:Booking_4 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Booking ;
+                                 bookingServiceOntology:hasBooked bookingServiceOntology:Cottage_4 ;
+                                 bookingServiceOntology:booker_name "William Blueberry"^^xsd:string ;
+                                 bookingServiceOntology:booking_endDate "2019-06-15T10:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:booking_number "4"^^xsd:int ;
+                                 bookingServiceOntology:booking_startDate "2019-06-04T09:00:00"^^xsd:dateTime .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Booking_5
-:Booking_5 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Booking ;
-           bookingServiceOntology:hasBooked :Cottage_5 ;
-           bookingServiceOntology:booker_name "James Aironfoot"^^xsd:string ;
-           bookingServiceOntology:booking_number "5"^^xsd:int ;
-           bookingServiceOntology:booking_startDate "2019-04-03T13:20:00"^^xsd:dateTime ;
-           bookingServiceOntology:booking_endDate "2019-04-20T12:00:00"^^xsd:dateTime .
+bookingServiceOntology:Booking_5 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Booking ;
+                                 bookingServiceOntology:hasBooked bookingServiceOntology:Cottage_5 ;
+                                 bookingServiceOntology:booker_name "James Aironfoot"^^xsd:string ;
+                                 bookingServiceOntology:booking_endDate "2019-04-20T12:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:booking_number "5"^^xsd:int ;
+                                 bookingServiceOntology:booking_startDate "2019-04-03T13:20:00"^^xsd:dateTime .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_1
-:Cottage_1 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Cottage ;
-		   bookingServiceOntology:cottage_available_startDate "2019-03-28T10:00:00"^^xsd:dateTime ;
-		   bookingServiceOntology:cottage_available_endDate "2019-03-21T21:32:00"^^xsd:dateTime ;
-           bookingServiceOntology:cottage_address """9259 Stillwater Road 
+bookingServiceOntology:Cottage_1 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Cottage ;
+                                 bookingServiceOntology:cottage_address """9259 Stillwater Road 
 Cranberry Twp, PA 16066"""^^xsd:string ;
-           bookingServiceOntology:cottage_bedrooms "5"^^xsd:int ;
-           bookingServiceOntology:cottage_city_distance "1500"^^xsd:int ;
-           bookingServiceOntology:cottage_lake_distance "300"^^xsd:int ;
-           bookingServiceOntology:cottage_nearest_city "Pittsburgh"^^xsd:string ;
-           bookingServiceOntology:cottage_image "https://d126fxm3orgy3k.cloudfront.net/images/50818bc5d37bb61de10002ac/38739172/38739172_1.jpg"^^xsd:anyURI ;
-           bookingServiceOntology:cottage_places "7"^^xsd:int .
+                                 bookingServiceOntology:cottage_available_endDate "2019-03-21T21:32:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_available_startDate "2019-03-28T10:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_bedrooms "5"^^xsd:int ;
+                                 bookingServiceOntology:cottage_city_distance "1500"^^xsd:int ;
+                                 bookingServiceOntology:cottage_image "https://d126fxm3orgy3k.cloudfront.net/images/50818bc5d37bb61de10002ac/38739172/38739172_1.jpg"^^xsd:anyURI ;
+                                 bookingServiceOntology:cottage_lake_distance "300"^^xsd:int ;
+                                 bookingServiceOntology:cottage_nearest_city "Pittsburgh"^^xsd:string ;
+                                 bookingServiceOntology:cottage_places "7"^^xsd:int .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_2
-:Cottage_2 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Cottage ;
-		   bookingServiceOntology:cottage_available_startDate "2019-04-05T11:00:00"^^xsd:dateTime ;
-		   bookingServiceOntology:cottage_available_endDate "2019-05-10T00:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:cottage_address """7231 Fawn Lane 
+bookingServiceOntology:Cottage_2 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Cottage ;
+                                 bookingServiceOntology:cottage_address """7231 Fawn Lane 
 Metairie, LA 70001"""^^xsd:string ;
-           bookingServiceOntology:cottage_bedrooms "4"^^xsd:int ;
-           bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
-           bookingServiceOntology:cottage_image "https://uploads.pl-internal.com/ZTI4YTBkMzYtMzRiNy00MGVjLWI0NjMtNjI2ZmQwN2Y4ODEw/content/2015/12/Front%2001-2.jpg"^^xsd:anyURI ;
-           bookingServiceOntology:cottage_lake_distance "10000"^^xsd:int ;
-           bookingServiceOntology:cottage_nearest_city "Los Angeles"^^xsd:string ;
-           bookingServiceOntology:cottage_places "4"^^xsd:int .
+                                 bookingServiceOntology:cottage_available_endDate "2019-05-10T00:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_available_startDate "2019-04-05T11:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_bedrooms "4"^^xsd:int ;
+                                 bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
+                                 bookingServiceOntology:cottage_image "https://uploads.pl-internal.com/ZTI4YTBkMzYtMzRiNy00MGVjLWI0NjMtNjI2ZmQwN2Y4ODEw/content/2015/12/Front%2001-2.jpg"^^xsd:anyURI ;
+                                 bookingServiceOntology:cottage_lake_distance "10000"^^xsd:int ;
+                                 bookingServiceOntology:cottage_nearest_city "Los Angeles"^^xsd:string ;
+                                 bookingServiceOntology:cottage_places "4"^^xsd:int .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_3
-:Cottage_3 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Cottage ;
-		   bookingServiceOntology:cottage_available_startDate "2019-05-22T14:00:00"^^xsd:dateTime ;
-		   bookingServiceOntology:cottage_available_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:cottage_address """93 Smith Ave. 
+bookingServiceOntology:Cottage_3 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Cottage ;
+                                 bookingServiceOntology:cottage_address """93 Smith Ave. 
 Deerfield Beach, FL 33442"""^^xsd:string ;
-           bookingServiceOntology:cottage_bedrooms "8"^^xsd:int ;
-           bookingServiceOntology:cottage_city_distance "200"^^xsd:int ;
-           bookingServiceOntology:cottage_image "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vq1PONqmzne0g3wy3LeX8WSNFlQUjInbvHC7gjsI7IdHzwF3wQ"^^xsd:anyURI ;
-           bookingServiceOntology:cottage_lake_distance "12000"^^xsd:int ;
-           bookingServiceOntology:cottage_nearest_city "Orlando"^^xsd:string ;
-           bookingServiceOntology:cottage_places "10"^^xsd:int .
+                                 bookingServiceOntology:cottage_available_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_available_startDate "2019-05-22T14:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_bedrooms "8"^^xsd:int ;
+                                 bookingServiceOntology:cottage_city_distance "200"^^xsd:int ;
+                                 bookingServiceOntology:cottage_image "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vq1PONqmzne0g3wy3LeX8WSNFlQUjInbvHC7gjsI7IdHzwF3wQ"^^xsd:anyURI ;
+                                 bookingServiceOntology:cottage_lake_distance "12000"^^xsd:int ;
+                                 bookingServiceOntology:cottage_nearest_city "Orlando"^^xsd:string ;
+                                 bookingServiceOntology:cottage_places "10"^^xsd:int ;
+                                 bookingServiceOntology:duration "10"^^xsd:int ;
+                                 bookingServiceOntology:shift_startDate "1"^^xsd:int .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_4
-:Cottage_4 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Cottage ;
-		   bookingServiceOntology:cottage_available_startDate "2019-06-04T09:00:00"^^xsd:dateTime ;
-		   bookingServiceOntology:cottage_available_endDate "2019-06-15T10:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:cottage_address """7951 South Airport Drive 
+bookingServiceOntology:Cottage_4 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Cottage ;
+                                 bookingServiceOntology:cottage_address """7951 South Airport Drive 
 Valrico, FL 33594"""^^xsd:string ;
-           bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
-           bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
-           bookingServiceOntology:cottage_image "https://ap.rdcpix.com/724888835/dfe6cf0ad02578c89304853bc9249e3fl-m0xd-w1020_h770_q80.jpg"^^xsd:anyURI ;
-           bookingServiceOntology:cottage_lake_distance "300"^^xsd:int ;
-           bookingServiceOntology:cottage_nearest_city "Tampa"^^xsd:string ;
-           bookingServiceOntology:cottage_places "5"^^xsd:int .
+                                 bookingServiceOntology:cottage_available_endDate "2019-06-15T10:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_available_startDate "2019-06-04T09:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
+                                 bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
+                                 bookingServiceOntology:cottage_image "https://ap.rdcpix.com/724888835/dfe6cf0ad02578c89304853bc9249e3fl-m0xd-w1020_h770_q80.jpg"^^xsd:anyURI ;
+                                 bookingServiceOntology:cottage_lake_distance "300"^^xsd:int ;
+                                 bookingServiceOntology:cottage_nearest_city "Tampa"^^xsd:string ;
+                                 bookingServiceOntology:cottage_places "5"^^xsd:int .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_5
-:Cottage_5 rdf:type owl:NamedIndividual ,
-                    bookingServiceOntology:Cottage ;
-		   bookingServiceOntology:cottage_available_startDate "2019-04-03T13:20:00"^^xsd:dateTime ;
-		   bookingServiceOntology:cottage_available_endDate "2019-04-20T12:00:00"^^xsd:dateTime ;
-           bookingServiceOntology:cottage_address """23 Rosewood Street 
+bookingServiceOntology:Cottage_5 rdf:type owl:NamedIndividual ,
+                                          bookingServiceOntology:Cottage ;
+                                 bookingServiceOntology:cottage_address """23 Rosewood Street 
 Gwynn Oak, MD 21207"""^^xsd:string ;
-           bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
-           bookingServiceOntology:cottage_city_distance "12000"^^xsd:int ;
-           bookingServiceOntology:cottage_image "https://photos.zillowstatic.com/p_h/ISadguvkk911iv0000000000.jpg"^^xsd:anyURI ;
-           bookingServiceOntology:cottage_lake_distance "1000"^^xsd:int ;
-           bookingServiceOntology:cottage_nearest_city "Baltimore"^^xsd:string ;
-           bookingServiceOntology:cottage_places "4"^^xsd:int .
+                                 bookingServiceOntology:cottage_available_endDate "2019-04-20T12:00:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_available_startDate "2019-04-03T13:20:00"^^xsd:dateTime ;
+                                 bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
+                                 bookingServiceOntology:cottage_city_distance "12000"^^xsd:int ;
+                                 bookingServiceOntology:cottage_image "https://photos.zillowstatic.com/p_h/ISadguvkk911iv0000000000.jpg"^^xsd:anyURI ;
+                                 bookingServiceOntology:cottage_lake_distance "1000"^^xsd:int ;
+                                 bookingServiceOntology:cottage_nearest_city "Baltimore"^^xsd:string ;
+                                 bookingServiceOntology:cottage_places "4"^^xsd:int .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi

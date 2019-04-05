@@ -13,12 +13,15 @@
     sswap:hasMapping 
 		[
     a sswap:Subject, ontologyIRI:BookingInformation ;
+		ontologyIRI:duration "" ;
+	  ontologyIRI:shift_startDate "" ;
 	  	ontologyIRI:hasCottage 
 			[
 				a ontologyIRI:Cottage;
 				ontologyIRI:cottage_places "" ;
 				ontologyIRI:cottage_bedrooms "" ;
 				ontologyIRI:cottage_lake_distance "" ;
+				ontologyIRI:cottage_nearest_city "" ;
 				ontologyIRI:cottage_city_distance "" ;
 			];
 	  	ontologyIRI:hasBooker 
@@ -32,8 +35,6 @@
       sswap:mapsTo 
 			[
         a sswap:Object, ontologyIRI:Booking ;
-				ontologyIRI:booking_startDate ""
-				ontologyIRI:booking_endDate ""
 				ontologyIRI:booker_name "" ;
 				ontologyIRI:booking_number "" ;
 				ontologyIRI:hasBooked 
@@ -42,7 +43,6 @@
 						ontologyIRI:cottage_address "" ;
 						ontologyIRI:cottage_image "" ;
 						ontologyIRI:cottage_places "" ;
-						ontologyIRI:cottage_nearest_city "" ;
 						ontologyIRI:cottage_bedrooms "" ;
 						ontologyIRI:cottage_lake_distance "" ;
 						ontologyIRI:cottage_nearest_city "" ;
