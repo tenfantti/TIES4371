@@ -10,41 +10,45 @@
   sswap:oneLineDescription "A service that take the name and check if there is room booked under that name for the certain amount of time" ;
   sswap:operatesOn [
     a sswap:Graph ;
-    sswap:hasMapping [
-      a sswap:Subject, ontologyIRI:BookingInformation ;
-	  ontologyIRI:duration "" ;
-	  ontologyIRI:shift_startDate "" ;
-	  ontologyIRI:hasCottage [
-			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address "" ;
-			ontologyIRI:cottage_bedrooms "" ;
-			ontologyIRI:cottage_nearest_city "" ;
-			ontologyIRI:cottage_places "" ;
-			ontologyIRI:cottage_lake_distance "" ;
-			ontologyIRI:cottage_city_distance "" ;
-	  ];
-	  ontologyIRI:hasBooker [
-			a ontologyIRI:Booking;
-			ontologyIRI:booker_name "" ;
-			ontologyIRI:booking_number "" ;
-			ontologyIRI:booking_startDate "" ;
-			ontologyIRI:booking_endDate "" ;
-	  ];
+    sswap:hasMapping 
+		[
+    a sswap:Subject, ontologyIRI:BookingInformation ;
+	  	ontologyIRI:hasCottage 
+			[
+				a ontologyIRI:Cottage;
+				ontologyIRI:cottage_places "" ;
+				ontologyIRI:cottage_bedrooms "" ;
+				ontologyIRI:cottage_lake_distance "" ;
+				ontologyIRI:cottage_city_distance "" ;
+			];
+	  	ontologyIRI:hasBooker 
+			[
+				a ontologyIRI:Booking;
+				ontologyIRI:booker_name "" ;
+				ontologyIRI:booking_startDate "" ;
+				ontologyIRI:booking_endDate "" ;
+			];
 
-      sswap:mapsTo [
+      sswap:mapsTo 
+			[
         a sswap:Object, ontologyIRI:Booking ;
-		ontologyIRI:booking_startDate ""
-        ontologyIRI:booking_endDate ""
-		ontologyIRI:booker_name "" ;
-		ontologyIRI:booking_number "" ;
-		ontologyIRI:hasBooked [
-			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address "" ;
-			ontologyIRI:cottage_bedrooms "" ;
-			ontologyIRI:cottage_nearest_city "" ;
-			ontologyIRI:cottage_city_distance "" ;
-			ontologyIRI:cottage_lake_distance "" ;
-		] ;
+				ontologyIRI:booking_startDate ""
+				ontologyIRI:booking_endDate ""
+				ontologyIRI:booker_name "" ;
+				ontologyIRI:booking_number "" ;
+				ontologyIRI:hasBooked 
+					[
+						a ontologyIRI:Cottage;
+						ontologyIRI:cottage_address "" ;
+						ontologyIRI:cottage_image "" ;
+						ontologyIRI:cottage_places "" ;
+						ontologyIRI:cottage_bedrooms "" ;
+						ontologyIRI:cottage_lake_distance "" ;
+						ontologyIRI:cottage_nearest_city "" ;
+						ontologyIRI:cottage_city_distance "" ;
+						ontologyIRI:cottage_available_startDate "" ;
+						ontologyIRI:cottage_available_endDate "" ;
+					] ;
       ]
     ]
   ] .
