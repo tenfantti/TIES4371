@@ -118,8 +118,8 @@
           rdfs:range xsd:int .
 
 
-###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#shift_startDate
-:shift_startDate rdf:type owl:DatatypeProperty ;
+###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#shift_days
+:shift_days rdf:type owl:DatatypeProperty ;
                  rdfs:domain :BookingInformation ;
                  rdfs:range xsd:int .
 

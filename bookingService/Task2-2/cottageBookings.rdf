@@ -69,8 +69,6 @@ bookingServiceOntology:Cottage_1 rdf:type owl:NamedIndividual ,
                                           bookingServiceOntology:Cottage ;
                                  bookingServiceOntology:cottage_address """9259 Stillwater Road 
 Cranberry Twp, PA 16066"""^^xsd:string ;
-                                 bookingServiceOntology:cottage_available_endDate "2019-03-21T21:32:00"^^xsd:dateTime ;
-                                 bookingServiceOntology:cottage_available_startDate "2019-03-28T10:00:00"^^xsd:dateTime ;
                                  bookingServiceOntology:cottage_bedrooms "5"^^xsd:int ;
                                  bookingServiceOntology:cottage_city_distance "1500"^^xsd:int ;
                                  bookingServiceOntology:cottage_image "https://d126fxm3orgy3k.cloudfront.net/images/50818bc5d37bb61de10002ac/38739172/38739172_1.jpg"^^xsd:anyURI ;
@@ -84,8 +82,6 @@ bookingServiceOntology:Cottage_2 rdf:type owl:NamedIndividual ,
                                           bookingServiceOntology:Cottage ;
                                  bookingServiceOntology:cottage_address """7231 Fawn Lane 
 Metairie, LA 70001"""^^xsd:string ;
-                                 bookingServiceOntology:cottage_available_endDate "2019-05-10T00:00:00"^^xsd:dateTime ;
-                                 bookingServiceOntology:cottage_available_startDate "2019-04-05T11:00:00"^^xsd:dateTime ;
                                  bookingServiceOntology:cottage_bedrooms "4"^^xsd:int ;
                                  bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
                                  bookingServiceOntology:cottage_image "https://uploads.pl-internal.com/ZTI4YTBkMzYtMzRiNy00MGVjLWI0NjMtNjI2ZmQwN2Y4ODEw/content/2015/12/Front%2001-2.jpg"^^xsd:anyURI ;
@@ -99,16 +95,13 @@ bookingServiceOntology:Cottage_3 rdf:type owl:NamedIndividual ,
                                           bookingServiceOntology:Cottage ;
                                  bookingServiceOntology:cottage_address """93 Smith Ave. 
 Deerfield Beach, FL 33442"""^^xsd:string ;
-                                 bookingServiceOntology:cottage_available_endDate "2019-06-01T09:00:00"^^xsd:dateTime ;
-                                 bookingServiceOntology:cottage_available_startDate "2019-05-22T14:00:00"^^xsd:dateTime ;
                                  bookingServiceOntology:cottage_bedrooms "8"^^xsd:int ;
                                  bookingServiceOntology:cottage_city_distance "200"^^xsd:int ;
                                  bookingServiceOntology:cottage_image "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vq1PONqmzne0g3wy3LeX8WSNFlQUjInbvHC7gjsI7IdHzwF3wQ"^^xsd:anyURI ;
                                  bookingServiceOntology:cottage_lake_distance "12000"^^xsd:int ;
                                  bookingServiceOntology:cottage_nearest_city "Orlando"^^xsd:string ;
                                  bookingServiceOntology:cottage_places "10"^^xsd:int ;
-                                 bookingServiceOntology:duration "10"^^xsd:int ;
-                                 bookingServiceOntology:shift_startDate "1"^^xsd:int .
+                                 bookingServiceOntology:duration "10"^^xsd:int .
 
 
 ###  http://users.jyu.fi/~bamatya/TIES4371/onto/bookingServiceOntology.owl#Cottage_4
@@ -116,8 +109,6 @@ bookingServiceOntology:Cottage_4 rdf:type owl:NamedIndividual ,
                                           bookingServiceOntology:Cottage ;
                                  bookingServiceOntology:cottage_address """7951 South Airport Drive 
 Valrico, FL 33594"""^^xsd:string ;
-                                 bookingServiceOntology:cottage_available_endDate "2019-06-15T10:00:00"^^xsd:dateTime ;
-                                 bookingServiceOntology:cottage_available_startDate "2019-06-04T09:00:00"^^xsd:dateTime ;
                                  bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
                                  bookingServiceOntology:cottage_city_distance "3000"^^xsd:int ;
                                  bookingServiceOntology:cottage_image "https://ap.rdcpix.com/724888835/dfe6cf0ad02578c89304853bc9249e3fl-m0xd-w1020_h770_q80.jpg"^^xsd:anyURI ;
@@ -131,8 +122,6 @@ bookingServiceOntology:Cottage_5 rdf:type owl:NamedIndividual ,
                                           bookingServiceOntology:Cottage ;
                                  bookingServiceOntology:cottage_address """23 Rosewood Street 
 Gwynn Oak, MD 21207"""^^xsd:string ;
-                                 bookingServiceOntology:cottage_available_endDate "2019-04-20T12:00:00"^^xsd:dateTime ;
-                                 bookingServiceOntology:cottage_available_startDate "2019-04-03T13:20:00"^^xsd:dateTime ;
                                  bookingServiceOntology:cottage_bedrooms "3"^^xsd:int ;
                                  bookingServiceOntology:cottage_city_distance "12000"^^xsd:int ;
                                  bookingServiceOntology:cottage_image "https://photos.zillowstatic.com/p_h/ISadguvkk911iv0000000000.jpg"^^xsd:anyURI ;
