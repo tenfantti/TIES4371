@@ -16,69 +16,84 @@ function doQuery()
 function doQuery_back(result)
 {
 	if (result!=null) {
-		var list = document.getElementById("resultList").toString();
-		list = list.substring(2,list.length);
 		var result = result.split("|");
 		var values = [];
 		var i = 0;
 		result.forEach(function (r) {
-            if (r.indexOf("null")<0 && r != "" && r != "]") {
+            if (r.indexOf("null")<0 && r != "") {
                 values[i] = r;
                 i = i + 1;
             }
         });
 
         var resultList = document.getElementById('resultList');
-        var index = 0;
-		while(index < values.length){
-			if (values[index] == "null"){
-                index = index+11;
-                continue;
-			}
-			var cottage = document.createElement("div");
-			cottage.setAttribute("class","cottage");
-			var image = document.createElement("div");
-			image.setAttribute("class","backgroundImage");
-			image.setAttribute("style","background-image: url("+values[7+index]+")");
-			cottage.appendChild(image);
+        while(resultList.hasChildNodes()) {
+            resultList.removeChild(resultList.firstChild);
+        }
 
-			var leftColumn = document.createElement("div");
+		while(values.length>0){
+            var cottage = document.createElement("div");
+            cottage.setAttribute("class","cottage");
+            var leftColumn = document.createElement("div");
             leftColumn.setAttribute("class","leftColumn");
-			var booker = document.createElement("h5");
-			booker.innerHTML = "Booker: "+values[0+index];
-			leftColumn.appendChild(booker);
-            var num = document.createElement("h5");
-            num.innerHTML = "Booking Number: "+values[10+index];
-            leftColumn.appendChild(num);
-            var address = document.createElement("h5");
-            address.innerHTML = "Address: "+values[2+index];
-            leftColumn.appendChild(address);
-            var places = document.createElement("h5");
-            places.innerHTML = "Places/People: "+values[4+index];
-            leftColumn.appendChild(places);
-            var bedrooms = document.createElement("h5");
-            bedrooms.innerHTML = "Bedrooms: "+values[3+index];
-            leftColumn.appendChild(bedrooms);
-			cottage.appendChild(leftColumn);
-
             var leftColumn1 = document.createElement("div");
             leftColumn1.setAttribute("class","leftColumn");
-            var lake = document.createElement("h5");
-            lake.innerHTML = "Distance from lake: "+values[1+index];
-            leftColumn1.appendChild(lake);
-            var city = document.createElement("h5");
-            city.innerHTML = "Nearest City: "+values[9+index];
-            leftColumn1.appendChild(city);
-            var city_d = document.createElement("h5");
-            city_d.innerHTML = "Distance from city: "+values[8+index];
-            leftColumn1.appendChild(city_d);
-            var period = document.createElement("h5");
-            period.innerHTML = "Available from "+values[5+index]+"to"+values[6+index];
-            leftColumn1.appendChild(period);
-            cottage.appendChild(leftColumn1);
 
-            resultList.appendChild(cottage)
-			index = index+11;
+            let image = document.createElement("div");
+            image.setAttribute("class","backgroundImage");
+            var booker = document.createElement("h5");
+            var num = document.createElement("h5");
+            var address = document.createElement("h5");
+            var places = document.createElement("h5");
+            var bedrooms = document.createElement("h5");
+            var lake = document.createElement("h5");
+            var city = document.createElement("h5");
+            var city_d = document.createElement("h5");
+            var start = document.createElement("h5");
+            var end = document.createElement("h5");
+
+            for (i =0;i<11;i++){
+                slicedValue = values[i].split("\\");
+            	if (values[i].indexOf("cottage_image")>-1){
+                    image.setAttribute("style","background-image: url("+slicedValue[1]+")");
+				} else if (values[i].indexOf("name")>-1){
+                    booker.innerHTML = "Booker: "+slicedValue[1];
+                } else if (values[i].indexOf("number")>-1){
+                    num.innerHTML = "Booking Number: "+slicedValue[1];
+                } else if (values[i].indexOf("address")>-1){
+                    address.innerHTML = "Address: "+slicedValue[1];
+                } else if (values[i].indexOf("places")>-1){
+                    places.innerHTML = "Places/People: "+slicedValue[1];
+                } else if (values[i].indexOf("bedrooms")>-1){
+                    bedrooms.innerHTML = "Bedrooms: "+slicedValue[1];
+                } else if (values[i].indexOf("lake")>-1){
+                    lake.innerHTML = "Distance from lake: "+slicedValue[1];
+                } else if (values[i].indexOf("nearest")>-1){
+                    city.innerHTML = "Nearest City: "+slicedValue[1];
+                } else if (values[i].indexOf("city_distance")>-1){
+                    city_d.innerHTML = "Distance from city: "+slicedValue[1];
+                } else if (values[i].indexOf("start")>-1){
+                    start.innerHTML = "Available Start Date: "+ slicedValue[1]
+                } else if (values[i].indexOf("end")>-1){
+                    end.innerHTML = "Available End Date: "+ slicedValue[1];
+                }
+			}
+
+			cottage.appendChild(image);
+			leftColumn.appendChild(booker);
+            leftColumn.appendChild(num);
+            leftColumn.appendChild(address);
+            leftColumn.appendChild(places);
+            leftColumn.appendChild(bedrooms);
+			cottage.appendChild(leftColumn);
+            leftColumn1.appendChild(lake);
+            leftColumn1.appendChild(city);
+            leftColumn1.appendChild(city_d);
+            leftColumn1.appendChild(start);
+            leftColumn1.appendChild(end);
+            cottage.appendChild(leftColumn1);
+            resultList.appendChild(cottage);
+            values = values.slice(11);
 		}
 	}else {
         alert('null');

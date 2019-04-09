@@ -64,7 +64,11 @@ public class SSWAPService extends MapsTo {
 			if (property.getValue().isLiteral()) {
 				SSWAPPredicate predicate = rigGraph.getPredicate(property.getURI());
 				String lookupValue = getStrValue(translatedSubject,predicate);
-				if (lookupValue != null && !lookupValue.equals("")) addFilter(getStrName(property.getURI()),lookupValue);
+				if (lookupValue != null && !lookupValue.equals("")) {
+					String lookupName = getStrName(property.getURI());
+					if (!filter.contains(lookupName))
+						addFilter(getStrName(property.getURI()),lookupValue);
+				}
 			} else if (property.getValue().isIndividual()) {
 				SSWAPIndividual individual = property.getValue().asIndividual();
 				Iterator<SSWAPProperty> indIterator = individual.getProperties().iterator();
@@ -73,7 +77,11 @@ public class SSWAPService extends MapsTo {
 					if(indProperty.getValue().isLiteral()){
 						SSWAPPredicate predicate = rigGraph.getPredicate(indProperty.getURI());
 						String lookupValue = getStrValue(individual,predicate);
-						if (lookupValue != null && !lookupValue.equals("")) addFilter(getStrName(indProperty.getURI()),lookupValue);
+						if (lookupValue != null && !lookupValue.equals("")) {
+							String lookupName = getStrName(indProperty.getURI());
+							if (!filter.contains(lookupName))
+								addFilter(getStrName(indProperty.getURI()),lookupValue);
+						}
 					}else if(indProperty.getValue().isIndividual()){
 						// we suppose there are no individuals in nested property
 						System.out.println("Nested property value is Individual:");
@@ -82,6 +90,7 @@ public class SSWAPService extends MapsTo {
 			}
 		}
 		if (!filter.equals("")) {
+			filter = filter.substring(0,filter.length()-4);
 			filter = "FILTER("+filter + ")";
 		}
 		doSparql(filter);

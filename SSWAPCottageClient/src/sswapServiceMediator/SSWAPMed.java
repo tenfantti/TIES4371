@@ -20,7 +20,7 @@ public class SSWAPMed {
 	private String queryResult;
 	private List<String> lookUpNames;
 	private HashMap<String,String> form;
-	private List<String> results;
+	private String results = "";
 
 	public SSWAPMed(){
 
@@ -202,7 +202,6 @@ System.out.println("-------------");
 		int i = 1;
 
 		lookUpNames = new ArrayList<>();
-		results = new ArrayList<>();
 		while (iteratorObjects.hasNext()) {
 			SSWAPObject object = iteratorObjects.next();
 			System.out.println("Result: "+i+" -------------");
@@ -220,7 +219,7 @@ System.out.println("-------------");
 						lookupValue = lookupValue.substring(0,sub);
 					}
 					System.out.println(""+lookupName+" : "+lookupValue);
-					values = values+lookupValue+'|';
+					values = values+lookupName+"\\"+lookupValue+'|';
 				} else if (property.getValue().isIndividual()) {
 					SSWAPIndividual individual = property.getValue().asIndividual();
 					Iterator<SSWAPProperty> indIterator = individual.getProperties().iterator();
@@ -236,7 +235,7 @@ System.out.println("-------------");
 								lookupValue = lookupValue.substring(0,sub);
 							}
 							System.out.println(""+lookupName+" : "+lookupValue);
-							values = values+lookupValue+'|';
+							values = values+lookupName+"\\"+lookupValue+'|';
 						} else if(indProperty.getValue().isIndividual()){
 							// we suppose there are no individuals in nested property
 							System.out.println("Nested property value is Individual:");
@@ -245,7 +244,8 @@ System.out.println("-------------");
 				}
 			}
 			i++;
-			results.add(values);
+			values.substring(0,values.length()-1);
+			results = results + values;
 		}
 		
 	}
@@ -288,7 +288,7 @@ System.out.println("-------------");
 		return lookUpNames;
 	}
 
-	public List<String> getRRG(){
+	public String getRRG(){
 		return results;
 	}
 	
