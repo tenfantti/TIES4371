@@ -1,30 +1,30 @@
-@prefix : <http://localhost:8080/bookingService/onto/bookingServiceOntology> .
+@prefix : <http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://localhost:8080/bookingService/onto/bookingServiceOntology> .
+@base <http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl> .
 
-<http://localhost:8080/bookingService/onto/bookingServiceOntology> rdf:type owl:Ontology .
+<http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl> rdf:type owl:Ontology .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#hasBooked
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#hasBooked
 :hasBooked rdf:type owl:ObjectProperty ;
            rdfs:domain :Booking ;
            rdfs:range :Cottage .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#hasBooker
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#hasBooker
 :hasBooker rdf:type owl:ObjectProperty ;
            rdfs:domain :BookingInformation ;
            rdfs:range :Booking .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#hasCottage
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#hasCottage
 :hasCottage rdf:type owl:ObjectProperty ;
             rdfs:domain :BookingInformation ;
             rdfs:range :Cottage .
@@ -34,92 +34,92 @@
 #    Data properties
 #################################################################
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booker_name
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#booker_name
 :booker_name rdf:type owl:DatatypeProperty ;
              rdfs:domain :Booking ;
              rdfs:range xsd:string .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booking_endDate
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#booking_endDate
 :booking_endDate rdf:type owl:DatatypeProperty ;
                  rdfs:domain :Booking ;
                  rdfs:range xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booking_number
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#booking_number
 :booking_number rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Booking ;
                 rdfs:range xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#booking_startDate
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#booking_startDate
 :booking_startDate rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Booking ;
                    rdfs:range xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_address
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_address
 :cottage_address rdf:type owl:DatatypeProperty ;
                  rdfs:domain :Cottage ;
                  rdfs:range xsd:string .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_available_endDate
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_available_endDate
 :cottage_available_endDate rdf:type owl:DatatypeProperty ;
                            rdfs:domain :Cottage ;
                            rdfs:range xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_available_startDate
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_available_startDate
 :cottage_available_startDate rdf:type owl:DatatypeProperty ;
                              rdfs:domain :Cottage ;
                              rdfs:range xsd:dateTime .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_bedrooms
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_bedrooms
 :cottage_bedrooms rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Cottage ;
                   rdfs:range xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_city_distance
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_city_distance
 :cottage_city_distance rdf:type owl:DatatypeProperty ;
                        rdfs:domain :Cottage ;
                        rdfs:range xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_image
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_image
 :cottage_image rdf:type owl:DatatypeProperty ;
                rdfs:domain :Cottage ;
                rdfs:range xsd:anyURI .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_lake_distance
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_lake_distance
 :cottage_lake_distance rdf:type owl:DatatypeProperty ;
                        rdfs:domain :Cottage ;
                        rdfs:range xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_nearest_city
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_nearest_city
 :cottage_nearest_city rdf:type owl:DatatypeProperty ;
                       rdfs:domain :Cottage ;
                       rdfs:range xsd:string .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#cottage_places
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#cottage_places
 :cottage_places rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Cottage ;
                 rdfs:range xsd:string .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#duration
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#duration
 :duration rdf:type owl:DatatypeProperty ;
           rdfs:domain :BookingInformation ;
           rdfs:range xsd:int .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#shift_startDate
-:shift_startDate rdf:type owl:DatatypeProperty ;
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#shift_days
+:shift_days rdf:type owl:DatatypeProperty ;
                  rdfs:domain :BookingInformation ;
                  rdfs:range xsd:int .
 
@@ -128,18 +128,18 @@
 #    Classes
 #################################################################
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#Booking
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#Booking
 :Booking rdf:type owl:Class ;
          rdfs:subClassOf :BookingInformation .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#BookingInformation
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#BookingInformation
 :BookingInformation rdf:type owl:Class .
 
 
-###  http://localhost:8080/bookingService/onto/bookingServiceOntology#Cottage
+###  http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#Cottage
 :Cottage rdf:type owl:Class ;
          rdfs:subClassOf :BookingInformation .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi

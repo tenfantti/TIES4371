@@ -1,68 +1,88 @@
 function doQuery()
 {
-alert('doQuery...');	
-	if((document.getElementById('rc').value!=''))
-	{
-		var q_str = 'reqType=doQuery';
-		q_str = q_str+'&serviceURL='+document.getElementById('rc').value;
-		doAjax('SSWAPServiceMed',q_str,'doQuery_back','post',0);
-	}else
-	{
-		alert('Please, fill the Service URL...');
-	}
+	var inputs = document.getElementById('inputs').childNodes;
+	var query = ''
+	inputs.forEach(function (input) {
+		if(input.type!='button') {
+			query = query + '&' + input.name + '=' + input.value;
+		}
+    })
+	var serviceUrl = "http://localhost:9090/SSWAPCottageService/getService"
+    var q_str = "reqType=doQuery";
+    q_str = q_str+'&serviceURL='+serviceUrl+query;
+    doAjax('SSWAPServiceMed',q_str,'doQuery_back','post',0);
 }
 
 function doQuery_back(result)
 {
 	if (result!=null) {
-		var form = document.getElementById('SearchForm');
-        var nameC = document.getElementById('nameC');
-        var valueC = document.getElementById('valueC');
-		var result = result.split("url:");
-        document.getElementById('serviceUrl').innerHTML = "serviceUrl:" +result[1];
-        //get name list
-		var names = result[0].substring(1,result[0].length - 1);
-		var names = names.split(",")
-        form.style.display = "block";
-		//put names into form
-        names.forEach(function (lookUpName) {
-			var name = document.createElement("h4");
-			name.innerHTML = lookUpName;
-			var input = document.createElement("input");
-			input.type = "text";
-			input.name = lookUpName;
-			nameC.appendChild(name);
-			valueC.appendChild(input);
-        })
+		var list = document.getElementById("resultList").toString();
+		list = list.substring(2,list.length);
+		var result = result.split("|");
+		var values = [];
+		var i = 0;
+		result.forEach(function (r) {
+            if (r.indexOf("null")<0 && r != "" && r != "]") {
+                values[i] = r;
+                i = i + 1;
+            }
+        });
+
+        var resultList = document.getElementById('resultList');
+        var index = 0;
+		while(index < values.length){
+			if (values[index] == "null"){
+                index = index+11;
+                continue;
+			}
+			var cottage = document.createElement("div");
+			cottage.setAttribute("class","cottage");
+			var image = document.createElement("div");
+			image.setAttribute("class","backgroundImage");
+			image.setAttribute("style","background-image: url("+values[7+index]+")");
+			cottage.appendChild(image);
+
+			var leftColumn = document.createElement("div");
+            leftColumn.setAttribute("class","leftColumn");
+			var booker = document.createElement("h5");
+			booker.innerHTML = "Booker: "+values[0+index];
+			leftColumn.appendChild(booker);
+            var num = document.createElement("h5");
+            num.innerHTML = "Booking Number: "+values[10+index];
+            leftColumn.appendChild(num);
+            var address = document.createElement("h5");
+            address.innerHTML = "Address: "+values[2+index];
+            leftColumn.appendChild(address);
+            var places = document.createElement("h5");
+            places.innerHTML = "Places/People: "+values[4+index];
+            leftColumn.appendChild(places);
+            var bedrooms = document.createElement("h5");
+            bedrooms.innerHTML = "Bedrooms: "+values[3+index];
+            leftColumn.appendChild(bedrooms);
+			cottage.appendChild(leftColumn);
+
+            var leftColumn1 = document.createElement("div");
+            leftColumn1.setAttribute("class","leftColumn");
+            var lake = document.createElement("h5");
+            lake.innerHTML = "Distance from lake: "+values[1+index];
+            leftColumn1.appendChild(lake);
+            var city = document.createElement("h5");
+            city.innerHTML = "Nearest City: "+values[9+index];
+            leftColumn1.appendChild(city);
+            var city_d = document.createElement("h5");
+            city_d.innerHTML = "Distance from city: "+values[8+index];
+            leftColumn1.appendChild(city_d);
+            var period = document.createElement("h5");
+            period.innerHTML = "Available from "+values[5+index]+"to"+values[6+index];
+            leftColumn1.appendChild(period);
+            cottage.appendChild(leftColumn1);
+
+            resultList.appendChild(cottage)
+			index = index+11;
+		}
 	}else {
         alert('null');
 	}
-}
-
-function doSearch()
-{
-    alert('doSearch...');
-    var valueC = document.getElementById('valueC');
-    var inputs = valueC.childNodes;
-    var query = "";
-    inputs.forEach(function (input) {
-		query = query+'&'+input.name+'='+input.value;
-    });
-	var url = document.getElementById('serviceUrl').innerHTML.split("serviceUrl:")[1];
-    if(query!=null && url!=null)
-    {
-        var q_str = 'reqType=doSearch';
-        q_str = q_str+'&serviceURL='+url+query;
-        doAjax('SSWAPServiceMed',q_str,'doSearch_back','post',0);
-    }else
-    {
-        alert('No input values');
-    }
-}
-
-function doSearch_back(result) {
-	alert(result);
-
 }
 
 

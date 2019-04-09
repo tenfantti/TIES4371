@@ -1,49 +1,54 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sswap: <http://sswapmeet.sswap.info/sswap/> .
-@prefix ontologyIRI: <http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#> .
+@prefix ontologyIRI: <http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#> .
 
-<http://localhost:8080/CottageBooking/getService>
-  a <http://sswapmeet.sswap.info/sswap/Resource>, <http://localhost:8080/CottageBooking/onto/bookingServiceOntology.owl#Thing> ;
-  sswap:providedBy <http://localhost:8080/CottageBooking/onto/resourceProvider> ;
+<http://localhost:9090/SSWAPCottageService/getService>
+  a <http://sswapmeet.sswap.info/sswap/Resource>, <http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#Thing> ;
+  sswap:providedBy <http://localhost:9090/SSWAPCottageService/resources/resourceProvider> ;
   sswap:name "SSWAP Cottage Booking service" ;
   sswap:oneLineDescription "A service that take the name and check if there is room booked under that name for the certain amount of time" ;
   sswap:operatesOn [
     a sswap:Graph ;
-    sswap:hasMapping [
-      a sswap:Subject, ontologyIRI:BookingInformation ;
-	  ontologyIRI:duration "" ;
-	  ontologyIRI:shift_startDate "" ;
-	  ontologyIRI:hasCottage [
-			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address "" ;
-			ontologyIRI:cottage_bedrooms "" ;
-			ontologyIRI:cottage_nearest_city "" ;
-			ontologyIRI:cottage_places "" ;
-	  ];
-	  ontologyIRI:hasBooking [
-			a ontologyIRI:Booking;
-			ontologyIRI:booker_name "" ;
-			ontologyIRI:booking_number "" ;
-			ontologyIRI:booking_startDate "" ;
-			ontologyIRI:booking_endDate "" ;
-	  ];
+    sswap:hasMapping 
+		[
+    a sswap:Subject, ontologyIRI:BookingInformation ;
+		ontologyIRI:duration "" ;
+	  ontologyIRI:shift_days "" ;
+	  	ontologyIRI:hasCottage 
+			[
+				a ontologyIRI:Cottage;
+				ontologyIRI:cottage_places "" ;
+				ontologyIRI:cottage_bedrooms "" ;
+				ontologyIRI:cottage_lake_distance "" ;
+				ontologyIRI:cottage_nearest_city "" ;
+				ontologyIRI:cottage_city_distance "" ;
+			];
+	  	ontologyIRI:hasBooker 
+			[
+				a ontologyIRI:Booking;
+				ontologyIRI:booker_name "" ;
+				ontologyIRI:booking_startDate "" ;
+			];
 
-      sswap:mapsTo [
+      sswap:mapsTo 
+			[
         a sswap:Object, ontologyIRI:Booking ;
-		ontologyIRI:booking_startDate "";
-        ontologyIRI:booking_endDate "";
-		ontologyIRI:booker_name "" ;
-		ontologyIRI:booking_number "" ;
-		ontologyIRI:hasBooked [
-			a ontologyIRI:Cottage;
-			ontologyIRI:cottage_address "" ;
-			ontologyIRI:cottage_bedrooms "";
-			ontologyIRI:cottage_nearest_city "" ;
-			ontologyIRI:cottage_city_distance "" ;
-			ontologyIRI:cottage_image "" ;
-			ontologyIRI:cottage_lake_distance "" ;
-		] ;
+				ontologyIRI:booker_name "" ;
+				ontologyIRI:booking_number "" ;
+				ontologyIRI:hasBooked 
+					[
+						a ontologyIRI:Cottage;
+						ontologyIRI:cottage_address "" ;
+						ontologyIRI:cottage_image "" ;
+						ontologyIRI:cottage_places "" ;
+						ontologyIRI:cottage_bedrooms "" ;
+						ontologyIRI:cottage_lake_distance "" ;
+						ontologyIRI:cottage_nearest_city "" ;
+						ontologyIRI:cottage_city_distance "" ;
+						ontologyIRI:cottage_available_startDate "" ;
+						ontologyIRI:cottage_available_endDate "" ;
+					] ;
       ]
     ]
   ] .

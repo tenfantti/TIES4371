@@ -1,61 +1,163 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>SSWAP Service Client</title>
+<title>Cottage Booking</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <script language="JavaScript" src="myAJAXlib.js">
 </script>
 <SCRIPT language="JavaScript" SRC="myJS.js">
 </SCRIPT>
 <style type="text/css">
-    form {
-        width: 500px;
-        margin: 0 auto;
-        line-height: 35px;
+    body{
+        margin: 0;
     }
-    .serviceUrl {
+    .centerColumn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .leftColumn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .title{
         text-align: center;
-    }
-    .column {
-        width: 50%;
-        float: left;
-    }
-    .column h4{
-        margin:0;
-    }
-    input,select {
-        width:150px;
-        margin: 7px 0 7px 0;
-    }
-    .button {
-        margin: 0 auto;
-        width: 100px;
         display: block;
-    }
-    table {
-        border: 1px solid #999;
-        border-collapse: collapse;
         width: 100%;
-        table-layout: fixed;
+        height: 36px;
+        margin: 10px auto;
+    }
+    .header{
+        width: 100%;
+        box-shadow: 0px 2px 5px #9E9E9E;
+        position: relative;
+        border-radius: 10px;
+    }
+    .backgroundImage{
+        background-size: cover;
+        background-position: center;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;   
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+    #SearchForm{
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #ffffff78;
+    }
+    .formLine{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .value{
+        width: 250px;
+        height: 25px;
+        margin-bottom: 10px;
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+    }
+    ::placeholder {
+        color: #000;
+        font-size: 16px;
+    }
+    .button{
+        width: 100px;
+        height: 30px;
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .content{
+        padding: 10px;
+    }
+    .resultTitle{
+        color: #4E66F8 ;
+    }
+    .resultList {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .cottage{
+        width: 90%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 10px;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+    }
+    .cottage h5{
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: normal;
     }
 </style>
 
 </head>
 <body> 
+    <div class="header"> 
+        <div class="backgroundImage" style="background: url(https://www.hossanlumo.fi/media/djcatalog2/images/item/0/cottage-11.1_f.jpg);"></div>
+        <form action="CottageBooking" method="post" id="SearchForm">
+            <h2 class="title"><b>Cottage Booking</b></h2>
+            <div class="formLine centerColumn" id="inputs">
+                <input type="text" name="booker_name" class="value" placeholder="Booker Name">
+                <input type="Number" min="1" max="10" name="cottage_places" class="value" placeholder="How many places/people?">
+                <input type="Number" min="1" max="10" name="cottage_bedrooms" class="value" placeholder="How many bedrooms?">
+                <input type="text" name="cottage_lake_distance" class="value" placeholder="Max distance from lake (meters)?">
+                <input type="text" name="cottage_nearest_city" class="value" placeholder="Nearest City">
+                <input type="text" name="cottage_city_distance" class="value" placeholder="Max distance from city (meters)?">
+                <input type="Number" min="1" name="duration" class="value" placeholder="Duration (days)">
+                <input type="date" name="booking_startDate" class="value" placeholder="Start Date">
+                <input type="Number" min="0" name="shift_days" class="value" placeholder="acceptable shift days">
+                <input type="button" value="SEARCH" class="button" id="searchBut" onclick="doQuery();">
+            </div>
+        </form>
+    </div>
+    <div class="content">
+        <h3 class="resultTitle">AVAILABLE COTTAGES</h3>
+        <div class="resultList" id="resultList">
+            <!--<div class="cottage">-->
+                <!--<div class="backgroundImage" style="background-image: url(https://www.hossanlumo.fi/media/djcatalog2/images/item/0/cottage-11.1_f.jpg);"></div>-->
+                <!--<div class="leftColumn">-->
+                    <!--<h5>Booker: </h5>-->
+                    <!--<h5>Booking Number: </h5>-->
+                    <!--<h5>Address: </h5>-->
+                    <!--<h5>Places/People: </h5>-->
+                    <!--<h5>Bedrooms: </h5>-->
+                <!--</div>-->
+                <!--<div class="leftColumn">-->
+                    <!--<h5>Distance from lake:</h5>-->
+                    <!--<h5>Nearest City</h5>-->
+                    <!--<h5>Distance from city:</h5>-->
+                    <!--<h5>Sart Date:</h5>-->
+                    <!--<h5>End Date:</h5>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
 
-<h1><b>My SSWAP Service Client</b></h1>
-<p></p>
-
-<i>Service URL: </i>
-<input type="text" style="width:100%"  name="rClass" id="rc">
-<input type="button"  value="Query" id="sBut" onclick="doQuery();" style="width:50px">
-
-<form action="CottageBooking" method="post" id="SearchForm" style="display: none">
-    <h3 name="serviceUrl" id="serviceUrl"></h3>
-    <div class="column" id="nameC"></div>
-    <div class="column" id="valueC"></div>
-    <input type="button" value="Search" class="button" id="searchBut" onclick="doSearch();">
-</form>
-		
 </body>
 </html>

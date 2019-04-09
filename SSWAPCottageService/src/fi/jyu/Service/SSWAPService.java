@@ -2,8 +2,12 @@ package fi.jyu.Service;
 
 
 import java.net.URI;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import info.sswap.api.model.RIG;
 import info.sswap.api.model.SSWAPIndividual;
@@ -12,6 +16,13 @@ import info.sswap.api.model.SSWAPPredicate;
 import info.sswap.api.model.SSWAPProperty;
 import info.sswap.api.model.SSWAPSubject;
 import info.sswap.api.servlet.MapsTo;
+import org.eclipse.rdf4j.RDF4JException;
+import org.eclipse.rdf4j.query.*;
+import org.eclipse.rdf4j.repository.Repository;
+import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.http.HTTPRepository;
+
+import static javax.xml.bind.DatatypeConverter.parseDateTime;
 
 public class SSWAPService extends MapsTo {
 
@@ -21,6 +32,12 @@ public class SSWAPService extends MapsTo {
 	private SSWAPSubject subject;
 	private int objectCount = 0;
 
+	String filter = "";
+	Integer duration = 0;
+	Integer shift = null;
+	List<BindingSet> selectList = null;
+	List<String> bindingNames = null;
+
 	/**
 	 * Types and predicates created in the Resource Invocation Graph (RIG) document.
 	 *
@@ -29,7 +46,7 @@ public class SSWAPService extends MapsTo {
 	@Override
 	protected void initializeRequest(RIG rig) {
 		// if we need to check service parameters we could start here
-System.out.println("--- in service...");
+		System.out.println("--- in service...");
 		rigGraph = rig;
 	}
 
@@ -44,170 +61,178 @@ System.out.println("--- in service...");
 
 		while (iterator.hasNext()) {
 			SSWAPProperty property = iterator.next();
-
-			SSWAPPredicate predicate = rigGraph.getPredicate(property.getURI());
-			String lookupValue = getStrValue(translatedSubject,predicate);
-
-			if (lookupValue == null) lookupValue = "";
-			subjectHashMap.put(getStrName(property.getURI()), lookupValue);
-		}
-
-		doServiceLogic();
-	}
-
-
-	/**
-	 * Sets an object of a property
-	 * @param var the name of the value
-	 * @param node the value
-	 */
-	public void setObjectProperty(String objProperty, String objValue) {	
-		Iterator<SSWAPProperty> iterator = object.getProperties().iterator();
-		
-		while (iterator.hasNext()) {
-			SSWAPProperty property = iterator.next();
-			SSWAPPredicate predicate = rigGraph.getPredicate(property.getURI());
-			if (getStrName(property.getURI()).equals(objProperty)) {
-				object.setProperty(predicate, objValue);
-				break;
+			if (property.getValue().isLiteral()) {
+				SSWAPPredicate predicate = rigGraph.getPredicate(property.getURI());
+				String lookupValue = getStrValue(translatedSubject,predicate);
+				if (lookupValue != null && !lookupValue.equals("")) addFilter(getStrName(property.getURI()),lookupValue);
+			} else if (property.getValue().isIndividual()) {
+				SSWAPIndividual individual = property.getValue().asIndividual();
+				Iterator<SSWAPProperty> indIterator = individual.getProperties().iterator();
+				while (indIterator.hasNext()) {
+					SSWAPProperty indProperty = indIterator.next();
+					if(indProperty.getValue().isLiteral()){
+						SSWAPPredicate predicate = rigGraph.getPredicate(indProperty.getURI());
+						String lookupValue = getStrValue(individual,predicate);
+						if (lookupValue != null && !lookupValue.equals("")) addFilter(getStrName(indProperty.getURI()),lookupValue);
+					}else if(indProperty.getValue().isIndividual()){
+						// we suppose there are no individuals in nested property
+						System.out.println("Nested property value is Individual:");
+					}else{System.out.println("Nested property value is ???");}
+				}
 			}
 		}
+		if (!filter.equals("")) {
+			filter = "FILTER("+filter + ")";
+		}
+		doSparql(filter);
+		doServiceLogic();
 	}
-
 
 	/**
 	 * Imitates logic of the service. Converts values of request properties to the values of result properties. The case of 2 results (objects).
 	 */
 	public void doServiceLogic() {
-		
-		
-		objectCount = 1;
-		
-//		for (int i=0; i<3; i++) {
-//			String resultProperty = "resultProperty_"+(i+1);
-//			String resultValue = subjectHashMap.get("requestProperty_"+(i+1))+" - converted to result (object-"+objectCount+")";
-//			setObjectProperty(resultProperty, resultValue);
-//		}
-		
-		String booking_startDate = "booking_startDate";
-		String result_booking_startDate = subjectHashMap.get("booking_startDate")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(booking_startDate, result_booking_startDate);
-		
-		String booking_endDate = "booking_endDate";
-		String result_booking_endDate = subjectHashMap.get("booking_endDate")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(booking_endDate, result_booking_endDate);
-		
-		String booker_name = "booker_name";
-		String result_booker_name = subjectHashMap.get("booker_name")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(booker_name, result_booker_name);
-		
-		String booking_number = "booking_number";
-		String result_booking_number = subjectHashMap.get("booking_number")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(booking_number, result_booking_number);
-		
-		String cottage_address = "cottage_address";
-		String result_cottage_address = subjectHashMap.get("cottage_address")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_address, result_cottage_address);
-		
-		String cottage_bedrooms = "cottage_bedrooms";
-		String result_cottage_bedrooms = subjectHashMap.get("cottage_bedrooms")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_bedrooms, result_cottage_bedrooms);
-		
-		String cottage_nearest_city = "cottage_nearest_city";
-		String result_cottage_nearest_city = subjectHashMap.get("cottage_nearest_city")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_nearest_city, result_cottage_nearest_city);
-		
-		String cottage_city_distance = "cottage_city_distance";
-		String result_cottage_city_distance = subjectHashMap.get("cottage_city_distance")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_city_distance, result_cottage_city_distance);
-		
-		String cottage_image = "cottage_image";
-		String result_cottage_image = subjectHashMap.get("cottage_image")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_image, result_cottage_image);
-		
-		String cottage_lake_distance = "cottage_lake_distance";
-		String result_cottage_lake_distance = subjectHashMap.get("cottage_lake_distance")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_lake_distance, result_cottage_lake_distance);
-		
-		
-		objectCount = 2;
-	
-		System.out.println("---set first Object...");
-	/**
-	 * Creating new empty object result...
-	 */    
-		SSWAPObject sswapObject = null;
-        sswapObject = assignObject(subject);
-        Iterator<SSWAPProperty> iterator = object.getProperties().iterator();
-        while (iterator.hasNext()) {
-			SSWAPProperty property = iterator.next();
-			SSWAPPredicate predicate = rigGraph.getPredicate(property.getURI());
-			sswapObject.addProperty(predicate, "");
+		objectCount = 0;
+		for (BindingSet cottage:selectList) {
+			String end = cottage.getValue("cottage_available_endDate").toString().substring(1,20);
+			String start = cottage.getValue("cottage_available_startDate").toString().substring(1,20);
+			Calendar endDate = parseDateTime(end);
+			Calendar startDate = parseDateTime(start);
+			Long days = TimeUnit.MILLISECONDS.toDays(Math.abs(endDate.getTimeInMillis() - startDate.getTimeInMillis()));
+			if (days < duration) {
+				continue;
+			} else {
+				objectCount = objectCount + 1;
+
+				Iterator<SSWAPProperty> iterator = object.getProperties().iterator();
+
+				/**
+				 * Creating new empty object result for next object
+				 */
+				SSWAPObject sswapObject = null;
+				sswapObject = assignObject(subject);
+
+				while (iterator.hasNext()) {
+					SSWAPProperty property = iterator.next();
+					if (property.getValue().isLiteral()){
+						SSWAPPredicate predicate = rigGraph.getPredicate(property.getURI());
+						String lookupname = getStrName(property.getURI());
+						String lookupvalue = cottage.getValue(lookupname).toString();
+						if (lookupvalue!=null && !lookupvalue.equals("")){
+							object.setProperty(predicate, lookupvalue);
+						}
+
+						sswapObject.addProperty(predicate, "");
+
+					} else if (property.getValue().isIndividual()){
+						SSWAPIndividual individual = property.getValue().asIndividual();
+						Iterator<SSWAPProperty> indIterator = individual.getProperties().iterator();
+
+						SSWAPIndividual indEmpty = rigGraph.createIndividual();
+						indEmpty.addType(individual.getType());
+
+						while (indIterator.hasNext()) {
+							SSWAPProperty indProperty = indIterator.next();
+							if (indProperty.getValue().isLiteral()){
+								SSWAPPredicate predicate = rigGraph.getPredicate(indProperty.getURI());
+								String lookupname = getStrName(indProperty.getURI());
+								String lookupvalue = cottage.getValue(lookupname).toString();
+								if (lookupvalue!=null && !lookupvalue.equals("")){
+									individual.setProperty(predicate, lookupvalue);
+								}
+
+								indEmpty.addProperty(predicate,"");
+
+							} else if(indProperty.getValue().isIndividual()){
+								// we suppose there are no individuals in nested property
+								System.out.println("Nested property value is Individual:");
+							}else{System.out.println("Nested property value is ???");}
+						}
+
+						SSWAPPredicate indEmptyPredicate = rigGraph.getPredicate(individual.getURI());
+						sswapObject.addProperty(indEmptyPredicate,indEmpty);
+					}
+				}
+
+				if (objectCount>=3)
+					break;
+				object = sswapObject;
+				subject.addObject(object);
+			}
 		}
-        object = sswapObject;
-		subject.addObject(object);
-        
-		System.out.println("---added new Object...");
-		
-		
-//		for (int i=0; i<3; i++) {
-//			String resultProperty = "resultProperty_"+(i+1);
-//			String resultValue = subjectHashMap.get("requestProperty_"+(i+1))+" - converted to result (object-"+objectCount+")";
-//			setObjectProperty(resultProperty, resultValue);
-//		}
-		
-		String booking_startDate2 = "booking_startDate";
-		String result_booking_startDate2 = subjectHashMap.get("booking_startDate")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(booking_startDate2, result_booking_startDate2);
-		
-		String booking_endDate2 = "booking_endDate";
-		String result_booking_endDate2 = subjectHashMap.get("booking_endDate")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(booking_endDate2, result_booking_endDate2);
-		
-		String booker_name2 = "booker_name";
-		String result_booker_name2 = subjectHashMap.get("booker_name")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(booker_name2, result_booker_name2);
-		
-		String booking_number2 = "booking_number";
-		String result_booking_number2 = subjectHashMap.get("booking_number")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(booking_number2, result_booking_number2);
-		
-		String cottage_address2 = "cottage_address";
-		String result_cottage_address2 = subjectHashMap.get("cottage_address")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_address2, result_cottage_address2);
-		
-		String cottage_bedrooms2 = "cottage_bedrooms";
-		String result_cottage_bedrooms2 = subjectHashMap.get("cottage_bedrooms")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_bedrooms2, result_cottage_bedrooms2);
-		
-		String cottage_nearest_city2 = "cottage_nearest_city";
-		String result_cottage_nearest_city2 = subjectHashMap.get("cottage_nearest_city")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_nearest_city2, result_cottage_nearest_city2);
-		
-		String cottage_city_distance2 = "cottage_city_distance";
-		String result_cottage_city_distance2 = subjectHashMap.get("cottage_city_distance")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_city_distance2, result_cottage_city_distance2);
-		
-		String cottage_image2 = "cottage_image";
-		String result_cottage_image2 = subjectHashMap.get("cottage_image")+ " - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_image2, result_cottage_image2);
-		
-		String cottage_lake_distance2 = "cottage_lake_distance";
-		String result_cottage_lake_distance2 = subjectHashMap.get("cottage_lake_distance")+" - converted to result (object-"+objectCount+")";
-		setObjectProperty(cottage_lake_distance2, result_cottage_lake_distance2);
-		
-		
-		System.out.println("---set second Object...");
 	}
-	
-	
+
+	public void doSparql(String filter){
+		String sparqlString = "PREFIX bookingServiceOntology:<http://localhost:9090/SSWAPCottageService/resources/bookingCottage.owl#>\n" +
+				"SELECT ?booker_name ?booking_number ?cottage_address ?cottage_image ?cottage_places ?cottage_bedrooms ?cottage_lake_distance ?cottage_nearest_city ?cottage_city_distance ?cottage_available_startDate ?cottage_available_endDate\n" +
+				"WHERE { ?booking bookingServiceOntology:booker_name ?booker_name. ?booking bookingServiceOntology:booking_number ?booking_number.\n" +
+				"?booking bookingServiceOntology:hasBooked ?cottage. ?cottage bookingServiceOntology:cottage_address ?cottage_address. \n" +
+				"?cottage bookingServiceOntology:cottage_bedrooms ?cottage_bedrooms. ?cottage bookingServiceOntology:cottage_nearest_city ?cottage_nearest_city. \n" +
+				"?cottage bookingServiceOntology:cottage_city_distance ?cottage_city_distance. ?cottage bookingServiceOntology:cottage_lake_distance ?cottage_lake_distance. \n" +
+				"?cottage bookingServiceOntology:cottage_places ?cottage_places. ?cottage bookingServiceOntology:cottage_image ?cottage_image.\n" +
+				"?cottage bookingServiceOntology:cottage_available_startDate ?cottage_available_startDate. ?cottage bookingServiceOntology:cottage_available_endDate ?cottage_available_endDate. \n" +
+				filter+ "} ORDER BY(?cottage_lake_distance)";
+
+		String rdf4jServer = "http://localhost:8080/rdf4j-server/";
+		String repositoryID = "ties4371";
+		Repository repo = new HTTPRepository(rdf4jServer, repositoryID);
+		repo.initialize();
+
+		try (RepositoryConnection conn = repo.getConnection()) {
+			try {
+				TupleQuery tupleQuery = conn.prepareTupleQuery(QueryLanguage.SPARQL, sparqlString);
+				try (TupleQueryResult result = tupleQuery.evaluate()){
+					selectList = QueryResults.asList(result);
+					bindingNames = result.getBindingNames();
+				} finally {
+					// TODO: handle finally clause
+				}
+			} finally {
+				conn.close();
+			}
+		} catch (RDF4JException e) {
+			// TODO: handle exception
+		}
+	}
+
+	/*add sparql filter according to name and value*/
+	public void addFilter(String name, String value) {
+		if (name.equals("booker_name")){
+			filter = filter + "regex (?booker_name,\""+value+"\") && ";
+		} else if (name.equals("cottage_places")) {
+			filter = filter + "?cottage_places >= "+value+" && ";
+		} else if (name.equals("cottage_bedrooms")) {
+			filter = filter + "?cottage_bedrooms >= "+value+" && ";
+		} else if (name.equals("cottage_lake_distance")) {
+			filter = filter + "?cottage_lake_distance <= "+value+" && ";
+		} else if (name.equals("cottage_nearest_city")) {
+			filter = filter + "regex (?cottage_nearest_city,\""+value+"\") && ";
+		} else if (name.equals("cottage_city_distance")) {
+			filter = filter + "?cottage_city_distance <= "+value+" && ";
+		} else if (name.equals("booking_startDate")) {
+			if (shift == null)
+				filter = filter + "xsd:dateTime(?cottage_available_startDate) == xsd:dateTime(\""+value+"\")";
+			else{
+				Calendar start1 = parseDateTime(value);
+				start1.add(Calendar.DATE,-shift);
+				Calendar start2 = parseDateTime(value);
+				start2.add(Calendar.DATE,shift);
+				filter = filter + "xsd:dateTime(?cottage_available_startDate) >= xsd:dateTime(\""+start1.toString()+"\") && " +
+						"xsd:dateTime(?cottage_available_startDate) <= xsd:dateTime(\""+start2.toString()+"\") && ";
+			}
+		} else if (name.equals("duration")) {
+			duration = Integer.valueOf(value); // rdf4j does not support datetime +/- duration
+		} else if (name.equals("shift_days")) {
+			shift = Integer.valueOf(value);
+		}
+	}
 
 	/**
 	 * Returns the string value for a property instance on an individual.
 	 * If more than one property instance exists, only one is (arbitrarily) chosen.
 	 * 
 	 * @param sswapIndividual the individual with the property
-	 * @param propertyURI the URI identifying the property (predicate)
+	 * @param sswapPredicate the URI identifying the property (predicate)
 	 * @return the value as a string; null on any failure
 	 */
 	private String getStrValue(SSWAPIndividual sswapIndividual, SSWAPPredicate sswapPredicate) {

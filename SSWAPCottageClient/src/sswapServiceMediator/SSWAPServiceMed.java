@@ -47,37 +47,25 @@ public class SSWAPServiceMed extends HttpServlet {
 		SSWAPMed mediator = new SSWAPMed();
 		if(request.getParameter("reqType").toString().equals("doQuery")){
 			String endPoint = request.getParameter("serviceURL").toString();
-			mediator.sendRequest(endPoint);
+//			HashMap<String, String> valueMap = new HashMap<>();
+//			Enumeration<String> parameterNames = request.getParameterNames();
+//			while (parameterNames.hasMoreElements()) {
+//				String paramName = parameterNames.nextElement().trim();
+//				String paramValue = request.getParameter(paramName);
+//				if (paramName.equals("serviceURL")) {
+//					endPoint = paramValue;
+//				} else if (paramName.equals("serviceURL")) {
+//
+//				} else{
+//					valueMap.put(paramName,paramValue);
+//				}
+//			}
+			mediator.sendRequest(request.getParameterMap());
 			PrintWriter out = response.getWriter();
-			out.write(String.valueOf(mediator.getRDG()));
-			out.write("url:"+mediator.getServiceUrl());
+			out.write(String.valueOf(mediator.getRRG()));
 			out.flush();
 			out.close();
 	    }
-
-		if(request.getParameter("reqType").toString().equals("doSearch")){
-			String endPoint = new String();
-			HashMap<String, String> valueMap = new HashMap<>();
-			Enumeration<String> parameterNames = request.getParameterNames();
-			while (parameterNames.hasMoreElements()) {
-				String paramName = parameterNames.nextElement().trim();
-				String paramValue = request.getParameter(paramName);
-				if (paramName.equals("serviceURL")) {
-					endPoint = paramValue;
-				} else if (paramName.equals("serviceURL")) {
-
-				} else{
-					valueMap.put(paramName,paramValue);
-				}
-			}
-			mediator.sendRequest(endPoint,valueMap);
-			PrintWriter out = response.getWriter();
-
-			mediator.getRRG();
-			out.flush();
-			out.close();
-
-		}
 
 	}
 
