@@ -42,7 +42,7 @@ public class CompareString {
 		CompareString ng = new CompareString();
 //		ngram size
 		int n = 3;
-////		string list to compare
+//		string list to compare; lists of properties from RDGParser.java here
 		ArrayList<String> string1 = new ArrayList<String>(Arrays.asList("cottage_image", "booker_name"));
 		ArrayList<String> string2 = new ArrayList<String>(Arrays.asList("bookerName", "cottageImageURL"));
 		for (int i = 0; i < string1.size(); i++) {
