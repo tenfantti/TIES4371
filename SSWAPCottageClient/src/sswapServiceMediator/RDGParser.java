@@ -33,6 +33,7 @@ public class RDGParser {
 	public static void main(String[] args) {
 	try {
 		URL rdgUrl = new URL("http://users.jyu.fi/~jahasall/TIES4371/rdg");
+	//	URL rdgUrl = new URL("http://users.jyu.fi/~bamatya/TIES4371/onto/mySSWAPServiceRDG");
 		File rdgFile = new File("rdg");
 		FileUtils.copyURLToFile(rdgUrl, rdgFile);
 		parseRDG(rdgFile);
@@ -58,27 +59,12 @@ public class RDGParser {
 			Document document = documentBuilder.parse(file);
 			StringBuilder nameSpace = new StringBuilder(
                     document.getDocumentElement().getPrefix() != null ? document.getDocumentElement().getPrefix() + ":" : "");
-			NodeList list = document.getElementsByTagName(nameSpace + "type");
-			for (int j = 0; j < list.getLength(); j++) {
-				Node temp = (Node) list.item(j);
-				Element parent = (Element) temp.getParentNode();
-				NodeList children = parent.getChildNodes();
-				boolean isRightParent = false;
-				for (int k = 0; k < children.getLength(); k++) {
-					if (children.item(k).getNodeType() != Node.ELEMENT_NODE) continue;
-					Element child = (Element) children.item(k);
-					if (child.getTagName() == null) continue;
-					String childName = child.getTagName().substring(child.getTagName().indexOf(":") + 1, child.getTagName().length());
-					if (childName.equalsIgnoreCase("mapsTo")) {
-						// correct parent, if mapsTo included in element
-						isRightParent = true;
-						break;
-					}
-				}
-				if (isRightParent) {
-					list = parent.getChildNodes();
-					break;
-				}
+			NodeList list; // = document.getElementsByTagName(nameSpace + "type");
+			NodeList nodes = document.getDocumentElement().getElementsByTagNameNS("*", "Subject");
+			if (nodes.item(0) != null) {
+				list = nodes.item(0).getChildNodes();
+			} else {
+				list = document.getDocumentElement().getElementsByTagNameNS("*", "subject").item(0).getChildNodes();
 			}
 			
 			for (int i = 0; i < list.getLength(); i++) {
@@ -86,6 +72,14 @@ public class RDGParser {
 				Element item = (Element) list.item(i);
 				String tagName = item.getTagName().substring(item.getTagName().indexOf(":") + 1, item.getTagName().length()); 
 				if (tagName.equalsIgnoreCase("type")) continue;
+				if (item.hasChildNodes()) {
+					NodeList wrappedChild = item.getChildNodes();
+					if (wrappedChild.getLength() > 0) {
+						for (int k = 0; k < wrappedChild.getLength(); k++) {
+							properties.addAll(getChildrenFromObject(wrappedChild.item(k).getChildNodes()));
+						}
+					}
+				}
 				if (tagName.equalsIgnoreCase("mapsTo")) {
 					NodeList resultElements = item.getFirstChild().getChildNodes();
 					for (int m = 0; m < resultElements.getLength(); m++) {
@@ -94,10 +88,12 @@ public class RDGParser {
 						String resultTagName = resultItem.getTagName().substring(resultItem.getTagName().indexOf(":") + 1, resultItem.getTagName().length());
 						if (resultTagName.equalsIgnoreCase("type")) continue;
 						properties.add(resultTagName);
+						System.out.println(resultTagName);
 					}
 					continue;
 				}
-				properties.add(tagName);
+				if (!tagName.contains("has")) properties.add(tagName);
+				System.out.println(tagName);
 			}
 			
 		} catch (SAXException | IOException | ParserConfigurationException e) {
@@ -106,6 +102,22 @@ public class RDGParser {
 		}
 		
 		return properties;
+	}
+
+	private static List<String> getChildrenFromObject(NodeList childNodes) {
+		List<String> props = new ArrayList<>();
+		for (int i = 0; i < childNodes.getLength(); i++) {
+			if (childNodes.item(i).getNodeType() != Node.ELEMENT_NODE) continue;
+			Element child = (Element) childNodes.item(i);
+			String tagName = child.getTagName().substring(child.getTagName().indexOf(":") + 1, child.getTagName().length());
+			if (tagName.equalsIgnoreCase("type")) continue;
+			if (child.getChildNodes().getLength() > 0) {
+				props.addAll(getChildrenFromObject(child.getChildNodes()));
+			} else {
+				if (!tagName.contains("has")) props.add(tagName);
+			}
+		}
+		return props;
 	}
 
 }
