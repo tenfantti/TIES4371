@@ -1,7 +1,14 @@
 package sswapServiceMediator;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import sswapServiceMediator.RDGParser;
 import java.util.Arrays;
+
+import org.apache.commons.io.FileUtils;
 /**
  * @author Bipika
  * @version 23.4.2019
@@ -9,6 +16,7 @@ import java.util.Arrays;
  */
 public class CompareString {
 	static ArrayList<String> strlist1 = new ArrayList<String>();
+	
 
 //	  generating substring of n length list from given word
 	public ArrayList<String> generateNGrams(String string, int n) {
@@ -37,14 +45,23 @@ public class CompareString {
 		return ngram;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 //		initiation of class
 		CompareString ng = new CompareString();
 //		ngram size
 		int n = 3;
+		URL rdgUrl1 = new URL("http://users.jyu.fi/~bamatya/TIES4371/onto/mySSWAPServiceRDG");
+		File rdgFile1 = new File("rdg1");
+		FileUtils.copyURLToFile(rdgUrl1, rdgFile1);
+		
+
+		URL rdgUrl2 = new URL("http://users.jyu.fi/~jahasall/TIES4371/rdg");
+		File rdgFile2 = new File("rdg2");
+		FileUtils.copyURLToFile(rdgUrl2, rdgFile2);
+		
 //		string list to compare; lists of properties from RDGParser.java here
-		ArrayList<String> string1 = new ArrayList<String>(Arrays.asList("cottage_image", "booker_name"));
-		ArrayList<String> string2 = new ArrayList<String>(Arrays.asList("bookerName", "cottageImageURL"));
+		ArrayList<String> string1 = (ArrayList<String>) RDGParser.parseRDG(rdgFile1);
+		ArrayList<String> string2 = (ArrayList<String>) RDGParser.parseRDG(rdgFile2);
 		for (int i = 0; i < string1.size(); i++) {
 			ArrayList<Float> ngramList = new ArrayList<Float>();
 			ArrayList<String> str1 = ng.generateNGrams(string1.get(i), n);
@@ -71,6 +88,10 @@ public class CompareString {
 //			display matched strings
 			if (max > 0.5) {
 				System.out.println(string1.get(ind1) + " -> " + string2.get(ind2));
+			}
+			else if (max<0.5 && max!=0)
+			{
+				System.out.println("Confidence: "+max+" for '"+string1.get(ind1)+"' and '"+string2.get(ind2)+"'");
 			}
 		}
 	}
