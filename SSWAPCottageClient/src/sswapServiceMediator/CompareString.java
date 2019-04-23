@@ -76,7 +76,7 @@ public class CompareString {
 				ngramList.add(ngram);
 
 			}
-			System.out.println(ngramList);
+//			System.out.println(ngramList);
 			float max = ngramList.get(0);
 			int ind2 = 0;
 			for (int x = 0; x < ngramList.size(); x++) {
@@ -86,7 +86,7 @@ public class CompareString {
 				}
 			}
 //			display matched strings
-			if (max > 0.5) {
+			if (max > 0.45) {
 				System.out.println(string1.get(ind1) + " -> " + string2.get(ind2));
 			}
 			else if (max<0.5 && max!=0)
